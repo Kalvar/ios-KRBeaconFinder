@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="kr9-Ss-PBh">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="F5H-YU-eQI">
+            <objects>
+                <viewController id="kr9-Ss-PBh" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Qw6-87-eJI"/>
+                        <viewControllerLayoutGuide type="bottom" id="tjK-NH-YWm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Klh-P2-Ssl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="5yU-9U-JII">
+                                <rect key="frame" x="265" y="460" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="177" placeholderIntrinsicHeight="21" text="Enable beacon ranging" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D0E-6c-PgO">
+                                <rect key="frame" x="11" y="465" width="177" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bBN-21-ISQ">
+                                <rect key="frame" x="265" y="421" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="203" placeholderIntrinsicHeight="21" text="Enable beacon advertising" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cg7-nh-7br">
+                                <rect key="frame" x="11" y="426" width="203" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="52" sectionHeaderHeight="26" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6C8-3r-srO">
+                                <rect key="frame" x="0.0" y="20" width="320" height="393"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="kr9-Ss-PBh" id="k64-QR-qVy"/>
+                                    <outlet property="delegate" destination="kr9-Ss-PBh" id="iw4-Sc-g0O"/>
+                                </connections>
+                            </tableView>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="qps-Dd-Kvs">
+                                <rect key="frame" x="265" y="498" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </switch>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" placeholderIntrinsicWidth="177" placeholderIntrinsicHeight="21" text="Enable BLE scanning beacons" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgl-Lv-2js">
+                                <rect key="frame" x="11" y="504" width="251" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6C8-3r-srO" firstAttribute="leading" secondItem="Klh-P2-Ssl" secondAttribute="leading" id="1qR-zw-FB9"/>
+                            <constraint firstItem="5yU-9U-JII" firstAttribute="leading" secondItem="D0E-6c-PgO" secondAttribute="trailing" constant="54" id="2Yt-0t-Upx"/>
+                            <constraint firstItem="D0E-6c-PgO" firstAttribute="centerY" secondItem="5yU-9U-JII" secondAttribute="centerY" id="5JO-o2-967"/>
+                            <constraint firstItem="Bgl-Lv-2js" firstAttribute="leading" secondItem="Klh-P2-Ssl" secondAttribute="leading" priority="120" constant="20" symbolic="YES" id="99q-Kq-EdB"/>
+                            <constraint firstItem="D0E-6c-PgO" firstAttribute="top" secondItem="Cg7-nh-7br" secondAttribute="bottom" constant="18" id="BZR-Sx-wo9"/>
+                            <constraint firstItem="5yU-9U-JII" firstAttribute="top" secondItem="bBN-21-ISQ" secondAttribute="bottom" constant="8" symbolic="YES" id="Eem-NN-tYO"/>
+                            <constraint firstItem="bBN-21-ISQ" firstAttribute="leading" secondItem="Cg7-nh-7br" secondAttribute="trailing" constant="28" id="Iod-zA-DQc"/>
+                            <constraint firstItem="bBN-21-ISQ" firstAttribute="top" secondItem="6C8-3r-srO" secondAttribute="bottom" constant="8" symbolic="YES" id="K6t-qj-bpl"/>
+                            <constraint firstItem="Cg7-nh-7br" firstAttribute="top" secondItem="6C8-3r-srO" secondAttribute="bottom" constant="5" id="Kh8-dg-Ln3"/>
+                            <constraint firstItem="D0E-6c-PgO" firstAttribute="leading" secondItem="Klh-P2-Ssl" secondAttribute="leading" priority="250" constant="20" symbolic="YES" id="OEn-Sb-WuD"/>
+                            <constraint firstItem="tjK-NH-YWm" firstAttribute="top" secondItem="Bgl-Lv-2js" secondAttribute="bottom" constant="44" id="PgL-5u-rWO"/>
+                            <constraint firstItem="Bgl-Lv-2js" firstAttribute="centerY" secondItem="qps-Dd-Kvs" secondAttribute="centerY" id="YDl-gd-y8g"/>
+                            <constraint firstAttribute="trailing" secondItem="6C8-3r-srO" secondAttribute="trailing" id="aCp-yQ-gPr"/>
+                            <constraint firstItem="D0E-6c-PgO" firstAttribute="leading" secondItem="Cg7-nh-7br" secondAttribute="leading" id="gkD-b0-7Cj"/>
+                            <constraint firstItem="bBN-21-ISQ" firstAttribute="leading" secondItem="5yU-9U-JII" secondAttribute="leading" id="mOO-2g-WPj"/>
+                            <constraint firstAttribute="centerX" secondItem="5yU-9U-JII" secondAttribute="centerX" constant="-115.5" id="mlF-Z9-lPq"/>
+                            <constraint firstItem="Bgl-Lv-2js" firstAttribute="top" secondItem="D0E-6c-PgO" secondAttribute="bottom" constant="18" id="tFq-ko-BQl"/>
+                            <constraint firstItem="qps-Dd-Kvs" firstAttribute="leading" secondItem="Klh-P2-Ssl" secondAttribute="leading" constant="265" id="yHn-NZ-a8e"/>
+                            <constraint firstItem="6C8-3r-srO" firstAttribute="top" secondItem="Klh-P2-Ssl" secondAttribute="top" constant="20" symbolic="YES" id="zs2-O1-tKt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="advertisingSwitch" destination="bBN-21-ISQ" id="dzk-sG-Xmh"/>
+                        <outlet property="beaconTableView" destination="6C8-3r-srO" id="vz9-u8-znU"/>
+                        <outlet property="bleScanningSwitch" destination="qps-Dd-Kvs" id="9M5-Dy-Jha"/>
+                        <outlet property="rangingSwitch" destination="5yU-9U-JII" id="nha-oM-egq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OSu-cP-7O0" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-102" y="214"/>
+        </scene>
+    </scenes>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

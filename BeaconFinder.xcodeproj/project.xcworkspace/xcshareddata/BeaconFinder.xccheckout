@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2C70D86A-6455-49DC-99B1-7B3A53E62B68</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BeaconFinder</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8F78677D-DC1C-48F3-90B0-AE9B8FA33E0A</key>
+		<string>https://github.com/Kalvar/KRBeaconFinder.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BeaconFinder.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8F78677D-DC1C-48F3-90B0-AE9B8FA33E0A</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/Kalvar/KRBeaconFinder.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8F78677D-DC1C-48F3-90B0-AE9B8FA33E0A</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8F78677D-DC1C-48F3-90B0-AE9B8FA33E0A</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ios-KRBeaconFinder</string>
+		</dict>
+	</array>
+</dict>
+</plist>
