@@ -39,16 +39,19 @@
                                action:@selector(changeScanningState:)
                      forControlEvents:UIControlEventValueChanged];
     
+    //Let's get start in Beacons coding ...
     __weak typeof(self) _weakSelf = self;
     
     self.beaconFinder        = [KRBeaconFinder sharedFinder];
     _beaconFinder.uuid       = @"B9407F30-F5F8-466E-AFF9-25556B57FE6D";
     _beaconFinder.identifier = @"com.kalvar.ibeacons";
+    
     [_beaconFinder setFoundBeaconsHandler:^(NSArray *foundBeacons, CLBeaconRegion *beaconRegion)
     {
         _weakSelf.detectedBeacons = foundBeacons;
         [_weakSelf.beaconTableView reloadData];
     }];
+    
     [_beaconFinder setBleScanningEnumerator:^(CBPeripheral *peripheral, NSDictionary *advertisements, NSNumber *RSSI)
     {
         NSLog(@"I see an advertisement with identifer: %@, state: %d, name: %@, services: %@,  description: %@",
@@ -59,7 +62,6 @@
               [advertisements description]);
     }];
     
-    //[_beaconFinder ranging];
 }
 
 -(void)didReceiveMemoryWarning
