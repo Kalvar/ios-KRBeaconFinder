@@ -46,6 +46,8 @@
     _beaconFinder.uuid       = @"B9407F30-F5F8-466E-AFF9-25556B57FE6D";
     _beaconFinder.identifier = @"com.kalvar.ibeacons";
     
+    __weak typeof(_beaconFinder) _weakBeaconFinder = _beaconFinder;
+    
     [_beaconFinder setFoundBeaconsHandler:^(NSArray *foundBeacons, CLBeaconRegion *beaconRegion)
     {
         _weakSelf.detectedBeacons = foundBeacons;
@@ -54,12 +56,22 @@
     
     [_beaconFinder setBleScanningEnumerator:^(CBPeripheral *peripheral, NSDictionary *advertisements, NSNumber *RSSI)
     {
-        NSLog(@"I see an advertisement with identifer: %@, state: %d, name: %@, services: %@,  description: %@",
+        NSLog(@"The advertisement with identifer: %@, state: %d, name: %@, services: %@,  description: %@",
               [peripheral identifier],
               [peripheral state],
               [peripheral name],
               [peripheral services],
               [advertisements description]);
+    }];
+    
+    [_beaconFinder setEnterRegionHandler:^(CLLocationManager *manager, CLRegion *region)
+    {
+        [_weakBeaconFinder fireLocalNotificationWithMessage:@"Enter region notification"];
+    }];
+    
+    [_beaconFinder setExitRegionHandler:^(CLLocationManager *manager, CLRegion *region)
+    {
+        [_weakBeaconFinder fireLocalNotificationWithMessage:@"Exit region notification"];
     }];
     
 }

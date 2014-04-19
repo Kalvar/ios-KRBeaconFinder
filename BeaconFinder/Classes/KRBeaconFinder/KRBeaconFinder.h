@@ -1,6 +1,6 @@
 //
 //  KRBeaconFinder.h
-//  KRBeaconFinder V1.0
+//  KRBeaconFinder V1.1
 //
 //  Created by Kalvar on 2014/4/1.
 //  Copyright (c) 2014年 Kalvar. All rights reserved.
@@ -17,6 +17,8 @@
 @class CLBeaconRegion;
 
 typedef void(^FoundBeaconsHandler) (NSArray *foundBeacons, CLBeaconRegion *beaconRegion);
+typedef void(^EnterRegionHandler) (CLLocationManager *manager, CLRegion *region);
+typedef void(^ExitRegionHandler) (CLLocationManager *manager, CLRegion *region);
 
 @interface KRBeaconFinder : NSObject
 {
@@ -36,14 +38,18 @@ typedef void(^FoundBeaconsHandler) (NSArray *foundBeacons, CLBeaconRegion *beaco
 @property (nonatomic, assign) BOOL notifyOnExit;
 
 @property (nonatomic, copy) FoundBeaconsHandler foundBeaconsHandler;
+@property (nonatomic, copy) EnterRegionHandler enterRegionHandler;
+@property (nonatomic, copy) ExitRegionHandler exitRegionHandler;
 
 @property (nonatomic, strong) KRBeaconCentralManager *beaconCentralManager;
 @property (nonatomic, strong) KRBeaconPeripheralManager *beaconPeripheralManager;
 @property (nonatomic, copy) ScanningEnumerator bleScanningEnumerator;
 
-#pragma --mark Blick Setters
+#pragma --mark Block Setters
 -(void)setFoundBeaconsHandler:(FoundBeaconsHandler)_theFoundBeaconsHandler;
 -(void)setBleScanningEnumerator:(ScanningEnumerator)_theBleScanningEnumerator;
+-(void)setEnterRegionHandler:(EnterRegionHandler)_theEnterRegionHandler;
+-(void)setExitRegionHandler:(ExitRegionHandler)_theExitRegionHandler;
 
 #pragma --mark Public Methods
 +(instancetype)sharedFinder;
@@ -56,5 +62,8 @@ typedef void(^FoundBeaconsHandler) (NSArray *foundBeacons, CLBeaconRegion *beaco
 -(void)bleStopScan;
 -(void)bleAdversting;
 -(void)bleStopAdversting;
+
+#pragma --mark Relax Public Methods
+-(void)fireLocalNotificationWithMessage:(NSString *)_message;
 
 @end

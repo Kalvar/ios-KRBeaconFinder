@@ -1,6 +1,6 @@
 //
 //  KRBeaconFinder.m
-//  KRBeaconFinder V1.0
+//  KRBeaconFinder V1.1
 //
 //  Created by Kalvar on 2014/4/1.
 //  Copyright (c) 2014年 Kalvar. All rights reserved.
@@ -72,6 +72,8 @@
 @synthesize notifyOnExit              = _notifyOnExit;
 
 @synthesize foundBeaconsHandler       = _foundBeaconsHandler;
+@synthesize enterRegionHandler        = _enterRegionHandler;
+@synthesize exitRegionHandler         = _exitRegionHandler;
 
 @synthesize beaconCentralManager      = _beaconCentralManager;
 @synthesize beaconPeripheralManager   = _beaconPeripheralManager;
@@ -172,6 +174,12 @@
     [_beaconPeripheralManager stopAdvertising];
 }
 
+#pragma --mark Relax Public Methods
+-(void)fireLocalNotificationWithMessage:(NSString *)_message
+{
+    [self _fireLocalNotificationWithMessage:_message];
+}
+
 #pragma --mark Block Setters
 -(void)setFoundBeaconsHandler:(FoundBeaconsHandler)_theFoundBeaconsHandler
 {
@@ -185,6 +193,16 @@
     {
         _beaconCentralManager.scanningEnumerator = _bleScanningEnumerator;
     }
+}
+
+-(void)setEnterRegionHandler:(EnterRegionHandler)_theEnterRegionHandler
+{
+    _enterRegionHandler = _theEnterRegionHandler;
+}
+
+-(void)setExitRegionHandler:(ExitRegionHandler)_theExitRegionHandler
+{
+    _exitRegionHandler = _theExitRegionHandler;
 }
 
 #pragma --mark Setters
@@ -266,16 +284,26 @@
     //[self _fireLocalNotificationWithMessage:@"Found Beacon Notification"];
 }
 
+//When app enters the monitored iBeacon scope happen.
 //當 iBeacons 進入區域時
 -(void)locationManager:(CLLocationManager *)manager didEnterRegion:(CLRegion *)region
 {
-    [self _fireLocalNotificationWithMessage:@"Enter region notification"];
+    if( self.enterRegionHandler )
+    {
+        _enterRegionHandler(manager, region);
+    }
+    //[self _fireLocalNotificationWithMessage:@"Enter region notification"];
 }
 
+//When app exited the monitored iBeacon scope happen.
 //當 iBeacons 離開區域時
 -(void)locationManager:(CLLocationManager *)manager didExitRegion:(CLRegion *)region
 {
-    [self _fireLocalNotificationWithMessage:@"Exit region notification"];
+    if( self.exitRegionHandler )
+    {
+        _exitRegionHandler(manager, region);
+    }
+    //[self _fireLocalNotificationWithMessage:@"Exit region notification"];
 }
 
 @end
