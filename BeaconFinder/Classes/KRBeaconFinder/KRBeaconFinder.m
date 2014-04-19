@@ -104,6 +104,8 @@
         _beaconPeripheralManager   = [KRBeaconPeripheralManager sharedManager];
         
         _foundBeaconsHandler       = nil;
+        _enterRegionHandler        = nil;
+        _exitRegionHandler         = nil;
         _bleScanningEnumerator     = nil;
         
         [self _buildLocationManager];
