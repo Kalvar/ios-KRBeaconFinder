@@ -49,11 +49,17 @@
 
 @implementation KRBeaconFinder (fixNotifications)
 
--(void)_fireLocalNotificationWithMessage:(NSString *)_message
+-(void)_fireLocalNotificationWithMessage:(NSString *)_message userInfo:(NSDictionary *)_userInfo
 {
     UILocalNotification *notification = [UILocalNotification new];
     notification.alertBody            = _message;
+    notification.userInfo             = _userInfo;
     [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+}
+
+-(void)_fireLocalNotificationWithMessage:(NSString *)_message
+{
+    [self _fireLocalNotificationWithMessage:_message userInfo:nil];
 }
 
 @end
@@ -180,6 +186,11 @@
 -(void)fireLocalNotificationWithMessage:(NSString *)_message
 {
     [self _fireLocalNotificationWithMessage:_message];
+}
+
+-(void)fireLocalNotificationWithMessage:(NSString *)_message userInfo:(NSDictionary *)_userInfo
+{
+    [self _fireLocalNotificationWithMessage:_message userInfo:_userInfo];
 }
 
 #pragma --mark Block Setters
@@ -309,6 +320,3 @@
 }
 
 @end
-
-
-

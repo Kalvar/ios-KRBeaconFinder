@@ -65,5 +65,6 @@ typedef void(^ExitRegionHandler) (CLLocationManager *manager, CLRegion *region);
 
 #pragma --mark Relax Public Methods
 -(void)fireLocalNotificationWithMessage:(NSString *)_message;
+-(void)fireLocalNotificationWithMessage:(NSString *)_message userInfo:(NSDictionary *)_userInfo;
 
 @end

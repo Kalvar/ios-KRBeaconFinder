@@ -36,7 +36,7 @@ More Information see the souce code, please.
     
     [_beaconFinder setEnterRegionHandler:^(CLLocationManager *manager, CLRegion *region)
     {
-        [_weakBeaconFinder fireLocalNotificationWithMessage:@"Enter region notification"];
+        [_weakBeaconFinder fireLocalNotificationWithMessage:@"Enter region notification" userInfo:@{@"key" : @"doShareToPeople"}];
     }];
     
     [_beaconFinder setExitRegionHandler:^(CLLocationManager *manager, CLRegion *region)
