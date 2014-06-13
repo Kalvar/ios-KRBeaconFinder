@@ -130,14 +130,6 @@
      */
     if( [UIApplication sharedApplication].applicationState != UIApplicationStateActive )
     {
-        //如果指定監控的 BeaconRegion 裡有設定 Major / Minor 的話，這裡就能取得值，否則無值。
-        //CLBeaconRegion *_beaconRegion = (CLBeaconRegion *)region;
-        //NSLog(@"_beaconRegion : %i, %i", [_beaconRegion.major integerValue], [_beaconRegion.minor integerValue]);
-        
-        //無值
-        //NSNumber *_major = beaconFinder.beaconRegion.major;
-        //NSNumber *_minor = beaconFinder.beaconRegion.minor;
-        
         if(state == CLRegionStateInside)
         {
             [beaconFinder fireLocalNotificationWithMessage:@"You're inside the beacon delegate"];

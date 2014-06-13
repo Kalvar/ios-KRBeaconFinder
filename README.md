@@ -6,7 +6,7 @@ More Information see the souce code or email me.
 
 ## How To Get Started
 
-1. If you just wanna watch one ibeacon device, you can direct using KRBeaconFinder.
+# If you just wanna watch one ibeacon device, you can direct using KRBeaconFinder.
 
 ``` objective-c
 #import "KRBeaconFinder.h"
@@ -114,7 +114,7 @@ More Information see the souce code or email me.
 }
 ```
 
-2. If you wanna watch more ibeacons, you can use KRBeacons.
+# If you wanna watch more ibeacons, you can use KRBeacons.
 
 ``` objective-c
 #import "KRBeacons.h"
