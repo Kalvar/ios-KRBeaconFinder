@@ -1,37 +1,36 @@
 //
 //  KRBeaconCentralManager.m
-//  KRBeaconFinder V1.0
+//  KRBeaconFinder V1.2
 //
-//  Created by Kalvar on 2014/4/1.
-//  Copyright (c) 2014年 Kalvar. All rights reserved.
+//  Created by Kalvar on 2013/11/30.
+//  Copyright (c) 2013 - 2014年 Kalvar. All rights reserved.
 //
 
-#import "KRBeaconCentralManager.h"
+#import "KRBeaconCentral.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 
-@interface KRBeaconCentralManager()<CBCentralManagerDelegate>
+@interface KRBeaconCentral()<CBCentralManagerDelegate>
 
 @end
 
-@implementation KRBeaconCentralManager (fixScanning)
-
+@implementation KRBeaconCentral (fixScanning)
 
 
 @end
 
-@implementation KRBeaconCentralManager
+@implementation KRBeaconCentral
 
 @synthesize centralManager     = _centralManager;
 @synthesize peripheral         = _peripheral;
 @synthesize scanningEnumerator = _scanningEnumerator;
 
 #pragma --mark Public Methods
-+(instancetype)sharedManager
++(instancetype)sharedCentral
 {
     static dispatch_once_t pred;
-    static KRBeaconCentralManager *_object = nil;
+    static KRBeaconCentral *_object = nil;
     dispatch_once(&pred, ^{
-        _object = [[KRBeaconCentralManager alloc] init];
+        _object = [[KRBeaconCentral alloc] init];
     });
     return _object;
 }

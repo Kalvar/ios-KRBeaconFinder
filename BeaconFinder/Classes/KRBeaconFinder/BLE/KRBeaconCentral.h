@@ -1,9 +1,9 @@
 //
 //  KRBeaconCentralManager.h
-//  KRBeaconFinder V1.0
+//  KRBeaconFinder V1.2
 //
-//  Created by Kalvar on 2014/4/1.
-//  Copyright (c) 2014年 Kalvar. All rights reserved.
+//  Created by Kalvar on 2013/11/30.
+//  Copyright (c) 2013 - 2014年 Kalvar. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -13,7 +13,7 @@
 
 typedef void(^ScanningEnumerator) (CBPeripheral *peripheral, NSDictionary *advertisements, NSNumber *RSSI);
 
-@interface KRBeaconCentralManager : NSObject
+@interface KRBeaconCentral : NSObject
 
 @property (nonatomic, strong) CBCentralManager *centralManager;
 @property (nonatomic, strong) CBPeripheral *peripheral;
@@ -21,7 +21,7 @@ typedef void(^ScanningEnumerator) (CBPeripheral *peripheral, NSDictionary *adver
 @property (nonatomic, copy) ScanningEnumerator scanningEnumerator;
 
 #pragma --mark Public Methods
-+(instancetype)sharedManager;
++(instancetype)sharedCentral;
 -(instancetype)init;
 -(void)scanWithEnumerator:(ScanningEnumerator)_enumerator;
 -(void)scan;
@@ -29,8 +29,5 @@ typedef void(^ScanningEnumerator) (CBPeripheral *peripheral, NSDictionary *adver
 
 #pragma --mark Setters
 -(void)setScanningEnumerator:(ScanningEnumerator)_theScanningEnumerator;
-
-
-
 
 @end

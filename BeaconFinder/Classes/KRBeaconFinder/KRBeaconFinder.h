@@ -1,70 +1,57 @@
 //
 //  KRBeaconFinder.h
-//  KRBeaconFinder V1.1
+//  KRBeaconFinder V1.2
 //
-//  Created by Kalvar on 2014/4/1.
-//  Copyright (c) 2014年 Kalvar. All rights reserved.
+//  Created by Kalvar on 2013/11/30.
+//  Copyright (c) 2013 - 2014年 Kalvar. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreLocation/CoreLocation.h>
-#import <CoreBluetooth/CoreBluetooth.h>
+#import "KRBeacons.h"
 
-#import "KRBeaconCentralManager.h"
-#import "KRBeaconPeripheralManager.h"
+@protocol KRBeaconFinderDelegate;
 
-@class CLLocationManager;
-@class CLBeaconRegion;
-
-typedef void(^FoundBeaconsHandler) (NSArray *foundBeacons, CLBeaconRegion *beaconRegion);
-typedef void(^EnterRegionHandler) (CLLocationManager *manager, CLRegion *region);
-typedef void(^ExitRegionHandler) (CLLocationManager *manager, CLRegion *region);
-
-@interface KRBeaconFinder : NSObject
+@interface KRBeaconFinder : KRBeacons
 {
     
 }
 
+@property (nonatomic, strong) id<KRBeaconFinderDelegate> meDelegate;
+
 //Your Apple Certificated Beacon ID
 @property (nonatomic, strong) NSString *uuid;
 @property (nonatomic, strong) NSString *identifier;
+@property (nonatomic, assign) NSInteger major;
+@property (nonatomic, assign) NSInteger minor;
 
-@property (nonatomic, strong) CLLocationManager *locationManager;
 @property (nonatomic, strong) CLBeaconRegion *beaconRegion;
-@property (nonatomic, strong) NSArray *foundBeacons;
 
-@property (nonatomic, assign) BOOL notifyEntryStateOnDisplay;
+@property (nonatomic, assign) BOOL notifyOnDisplay;
 @property (nonatomic, assign) BOOL notifyOnEntry;
 @property (nonatomic, assign) BOOL notifyOnExit;
-
-@property (nonatomic, copy) FoundBeaconsHandler foundBeaconsHandler;
-@property (nonatomic, copy) EnterRegionHandler enterRegionHandler;
-@property (nonatomic, copy) ExitRegionHandler exitRegionHandler;
-
-@property (nonatomic, strong) KRBeaconCentralManager *beaconCentralManager;
-@property (nonatomic, strong) KRBeaconPeripheralManager *beaconPeripheralManager;
-@property (nonatomic, copy) ScanningEnumerator bleScanningEnumerator;
-
-#pragma --mark Block Setters
--(void)setFoundBeaconsHandler:(FoundBeaconsHandler)_theFoundBeaconsHandler;
--(void)setBleScanningEnumerator:(ScanningEnumerator)_theBleScanningEnumerator;
--(void)setEnterRegionHandler:(EnterRegionHandler)_theEnterRegionHandler;
--(void)setExitRegionHandler:(ExitRegionHandler)_theExitRegionHandler;
+@property (nonatomic, assign) KRBeaconNotifyModes notifyMode;
 
 #pragma --mark Public Methods
 +(instancetype)sharedFinder;
 -(instancetype)init;
+
+#pragma --mark Override Add Region Methods
+-(void)addRegionWithUuid:(NSString *)_beaconUuid identifier:(NSString *)_beaconIdentifier major:(NSInteger)_beaconMajor minor:(NSInteger)_beaconMinor;
+
+#pragma --mark Override Ranging Methods
 -(void)ranging;
 -(void)stopRanging;
 
-#pragma --mark BLE Public Methods
--(void)bleScan;
--(void)bleStopScan;
--(void)bleAdversting;
--(void)bleStopAdversting;
+#pragma --mark Monitoring Methods
+-(void)monitoring;
+-(void)stopMonitoring;
+-(void)awakeDisplayWithRequestCompletion:(DisplayRegionHandler)_completion;
+-(void)awakeDisplay;
 
-#pragma --mark Relax Public Methods
--(void)fireLocalNotificationWithMessage:(NSString *)_message;
--(void)fireLocalNotificationWithMessage:(NSString *)_message userInfo:(NSDictionary *)_userInfo;
+@end
+
+@protocol KRBeaconFinderDelegate <NSObject>
+
+@optional
+-(void)krBeaconFinder:(KRBeaconFinder *)beaconFinder didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region;
 
 @end

@@ -2,24 +2,61 @@
 //  AppDelegate.m
 //  BeaconFinder
 //
-//  Created by Kalvar on 2014/4/1.
-//  Copyright (c) 2014年 Kalvar. All rights reserved.
+//  Created by Kalvar on 2013/11/30.
+//  Copyright (c) 2013 - 2014年 Kalvar. All rights reserved.
 //
 
 #import "AppDelegate.h"
 
 @implementation AppDelegate
 
+@synthesize locationManager = _locationManager;
+@synthesize beaconFinder    = _beaconFinder;
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    /*
+     * @ 一定要在 AppDelegate 裡實行 Monitoring 才能正確的監控「背景移除 App 後，還能在鎖屏畫面下呈現 iBeacon 通知」的功能。
+     */
+    _beaconFinder            = [KRBeaconFinder sharedFinder];
+    _beaconFinder.meDelegate = self;
+    _beaconFinder.uuid       = @"B9407F30-F5F8-466E-AFF9-25556B57FE6D";
+    _beaconFinder.identifier = @"com.kalvar.ibeacons";
+    [_beaconFinder awakeDisplay];
+    
+    /*
+    //原先啟動 App 被背景移除，且 iPhone 被鎖屏的監控方法
+    _locationManager = [[CLLocationManager alloc] init];
+    _locationManager.delegate = self;
+    
+    NSUUID *estimoteUUID = [[NSUUID alloc] initWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"];
+    CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:estimoteUUID
+                                                                identifier:@"Estimote Range"];
+    
+    // launch app when display is turned on and inside region
+    region.notifyEntryStateOnDisplay = YES;
+    
+    //Device 支援監控 BeaconRegion 的話
+    if ([CLLocationManager isMonitoringAvailableForClass:[CLBeaconRegion class]])
+    {
+        //重新啟動監控 BeaconRegion
+        [_locationManager startMonitoringForRegion:region];
+        
+        //請求啟動 locationManager:didDetermineState:forRegion: 委派方法
+        [_locationManager requestStateForRegion:region];
+    }
+    else
+    {
+        NSLog(@"This device does not support monitoring beacon regions");
+    }
+    */
+    
     return YES;
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
@@ -49,17 +86,72 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    
 }
+
+/*
+ * @ 收到本地通知時
+ */
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You received"
+                                                    message:notification.alertBody
+                                                   delegate:nil
+                                          cancelButtonTitle:@"OK"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+#pragma --mark KRBeaconFinderDelegate
+-(void)krBeaconFinder:(KRBeaconFinder *)beaconFinder didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
+{
+    NSLog(@"state : %i", [UIApplication sharedApplication].applicationState);
+    
+    /*
+     * @ [UIApplication sharedApplication].applicationState
+     *
+     *   UIApplicationStateActive     , 0 : App 前台活動中
+     *   UIApplicationStateInactive   , 1 : App 在後台被掛起無法運行，剛 Launch 進 App 時，也是這狀態，要注意
+     *   UIApplicationStateBackground , 2 : App 在後台運行或僅在後台未被掛起
+     *
+     * @ 最一開始出現系統的「xxx 想要使用您目前的位置」AlertView 時，整支 App 會變成 UIApplicationStateInactive 不活躍模式，
+     *   之後第 2 次再進 App，且為第 1 次執行這裡，也會是 UIApplicationStateActive 前台活動中的模式。
+     *
+     */
+    if( [UIApplication sharedApplication].applicationState != UIApplicationStateActive )
+    {
+        //如果指定監控的 BeaconRegion 裡有設定 Major / Minor 的話，這裡就能取得值，否則無值。
+        //CLBeaconRegion *_beaconRegion = (CLBeaconRegion *)region;
+        //NSLog(@"_beaconRegion : %i, %i", [_beaconRegion.major integerValue], [_beaconRegion.minor integerValue]);
+        
+        //無值
+        //NSNumber *_major = beaconFinder.beaconRegion.major;
+        //NSNumber *_minor = beaconFinder.beaconRegion.minor;
+        
+        if(state == CLRegionStateInside)
+        {
+            [beaconFinder fireLocalNotificationWithMessage:@"You're inside the beacon delegate"];
+        }
+        else if(state == CLRegionStateOutside)
+        {
+            [beaconFinder fireLocalNotificationWithMessage:@"You're outside the beacon delegate"];
+        }
+        else
+        {
+            return;
+        }
+    }
+}
+
 
 @end

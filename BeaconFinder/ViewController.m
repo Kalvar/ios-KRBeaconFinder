@@ -2,12 +2,13 @@
 //  ViewController.m
 //  KRBeaconFinder
 //
-//  Created by Kalvar on 2014/4/1.
-//  Copyright (c) 2014年 Kalvar. All rights reserved.
+//  Created by Kalvar on 2013/11/30.
+//  Copyright (c) 2013 - 2014年 Kalvar. All rights reserved.
 //
 
 #import "ViewController.h"
 #import "KRBeaconFinder.h"
+#import "AppDelegate.h"
 
 @interface ViewController ()
 
@@ -39,12 +40,15 @@
                                action:@selector(changeScanningState:)
                      forControlEvents:UIControlEventValueChanged];
     
-    //Let's get start in Beacons coding ...
     __weak typeof(self) _weakSelf = self;
     
+    //Let's get start in Beacons coding ...
+    
+    //Same as [(AppDelegate *)[UIApplication sharedApplication].delegate beaconFinder];
     self.beaconFinder        = [KRBeaconFinder sharedFinder];
-    _beaconFinder.uuid       = @"B9407F30-F5F8-466E-AFF9-25556B57FE6D";
-    _beaconFinder.identifier = @"com.kalvar.ibeacons";
+    
+    //_beaconFinder.uuid       = @"B9407F30-F5F8-466E-AFF9-25556B57FE6D";
+    //_beaconFinder.identifier = @"com.kalvar.ibeacons";
     
     __weak typeof(_beaconFinder) _weakBeaconFinder = _beaconFinder;
     
@@ -74,6 +78,33 @@
         [_weakBeaconFinder fireLocalNotificationWithMessage:@"Exit region notification"];
     }];
     
+    /*
+    [_beaconFinder setDisplayRegionHandler:^(CLLocationManager *manager, CLRegion *region, CLRegionState state)
+    {
+        if(state == CLRegionStateInside)
+        {
+            [_weakBeaconFinder fireLocalNotificationWithMessage:@"You're inside the beacon region 2"];
+        }
+        else if(state == CLRegionStateOutside)
+        {
+            [_weakBeaconFinder fireLocalNotificationWithMessage:@"You're outside the beacon region 2"];
+        }
+        else
+        {
+            return;
+        }
+    }];
+    */
+    
+    /*
+    //It works for watching more iBeacons.
+    [[KRBeacons sharedInstance] addRegionWithUuid:@"A9407F30-F5F8-466E-AFF9-25556B57FE6D" identifier:@"com.kalvar.ibeacons1"];
+    [[KRBeacons sharedInstance] addRegionWithUuid:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" identifier:@"com.kalvar.ibeacons2"];
+    [[KRBeacons sharedInstance] addRegionWithUuid:@"C9407F30-F5F8-466E-AFF9-25556B57FE6D" identifier:@"com.kalvar.ibeacons3"];
+    [[KRBeacons sharedInstance] ranging];
+    [[KRBeacons sharedInstance] monitoring];
+     */
+    
 }
 
 -(void)didReceiveMemoryWarning
@@ -101,10 +132,12 @@
     if (theSwitch.on)
     {
         [_beaconFinder ranging];
+        [_beaconFinder monitoring];
     }
     else
     {
         [_beaconFinder stopRanging];
+        [_beaconFinder stopMonitoring];
     }
 }
 
@@ -158,33 +191,31 @@
      *   - uuid      是 Apple Certificated Beacon ID，不同於 Device UUID
      *   - major     是 該 Beacons 群組 ID，當接收到 uuid 判斷為可以作動的 Beacons 後，就依照 major 來判斷是要做什麼類型的事情
      *   - minor     是 該 Beacons 群組底下，每一顆 Beacon 可以做什麼事情的判斷 ID
-     *   - proximity 會顯示目前 Beacon 離 iPhone 多遠，單位是公尺( m )
+     *   - accuracy  會顯示目前 Beacon 離 iPhone 多遠，單位是公尺( meter ), not proximity
      *   - rssi      會顯示目前的訊號強度，越近則越大，越遠則越小，範圍從 -43 ~ -94 以內為可信區域
      *
      */
     NSString *proximityString = @"";
-    NSString *openWhat        = @"";
     switch (beacon.proximity) {
-        case CLProximityNear:
-            proximityString = @"Near";
-            openWhat        = @"Google";
-            break;
         case CLProximityImmediate:
+            //~ 50 cm
             proximityString = @"Immediate";
-            openWhat        = @"Yahoo";
+            break;
+        case CLProximityNear:
+            //~ 2 m
+            proximityString = @"Near";
             break;
         case CLProximityFar:
+            //~ 30 m
             proximityString = @"Far";
-            openWhat        = @"StackOverflow";
             break;
         case CLProximityUnknown:
         default:
             proximityString = @"Unknown";
-            openWhat        = @"Gone";
             break;
     }
-    defaultCell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@ • %@ • %f • %li • %@",
-                                        beacon.major.stringValue, beacon.minor.stringValue, proximityString, beacon.accuracy, (long)beacon.rssi, openWhat];
+    defaultCell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@ • %@ • %f • %li • %.2fm",
+                                        beacon.major.stringValue, beacon.minor.stringValue, proximityString, beacon.accuracy, (long)beacon.rssi, beacon.accuracy];
     defaultCell.detailTextLabel.textColor = [UIColor grayColor];
     
     return defaultCell;

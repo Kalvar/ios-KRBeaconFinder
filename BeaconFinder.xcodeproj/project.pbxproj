@@ -22,10 +22,11 @@
 		8EA5B3BE18EACA9A0015B4F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8EA5B3BC18EACA9A0015B4F1 /* InfoPlist.strings */; };
 		8EA5B3C018EACA9A0015B4F1 /* BeaconFinderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA5B3BF18EACA9A0015B4F1 /* BeaconFinderTests.m */; };
 		8EA5B3D218EACAD90015B4F1 /* KRBeaconFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA5B3CE18EACAD90015B4F1 /* KRBeaconFinder.m */; };
-		8EA5B3D918EAF66C0015B4F1 /* KRBeaconCentralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA5B3D618EAF66C0015B4F1 /* KRBeaconCentralManager.m */; };
-		8EA5B3DA18EAF66C0015B4F1 /* KRBeaconPeripheralManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA5B3D818EAF66C0015B4F1 /* KRBeaconPeripheralManager.m */; };
+		8EA5B3D918EAF66C0015B4F1 /* KRBeaconCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA5B3D618EAF66C0015B4F1 /* KRBeaconCentral.m */; };
+		8EA5B3DA18EAF66C0015B4F1 /* KRBeaconPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA5B3D818EAF66C0015B4F1 /* KRBeaconPeripheral.m */; };
 		8EA5B3DC18EB11EE0015B4F1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EA5B3DB18EB11EE0015B4F1 /* CoreLocation.framework */; };
 		8EA5B3DE18EB11FA0015B4F1 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EA5B3DD18EB11FA0015B4F1 /* CoreBluetooth.framework */; };
+		8ED9216F194B494A00E5F843 /* KRBeacons.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9216E194B494A00E5F843 /* KRBeacons.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,12 +61,14 @@
 		8EA5B3BF18EACA9A0015B4F1 /* BeaconFinderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeaconFinderTests.m; sourceTree = "<group>"; };
 		8EA5B3CD18EACAD90015B4F1 /* KRBeaconFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBeaconFinder.h; sourceTree = "<group>"; };
 		8EA5B3CE18EACAD90015B4F1 /* KRBeaconFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBeaconFinder.m; sourceTree = "<group>"; };
-		8EA5B3D518EAF66C0015B4F1 /* KRBeaconCentralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBeaconCentralManager.h; sourceTree = "<group>"; };
-		8EA5B3D618EAF66C0015B4F1 /* KRBeaconCentralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBeaconCentralManager.m; sourceTree = "<group>"; };
-		8EA5B3D718EAF66C0015B4F1 /* KRBeaconPeripheralManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBeaconPeripheralManager.h; sourceTree = "<group>"; };
-		8EA5B3D818EAF66C0015B4F1 /* KRBeaconPeripheralManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBeaconPeripheralManager.m; sourceTree = "<group>"; };
+		8EA5B3D518EAF66C0015B4F1 /* KRBeaconCentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBeaconCentral.h; sourceTree = "<group>"; };
+		8EA5B3D618EAF66C0015B4F1 /* KRBeaconCentral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBeaconCentral.m; sourceTree = "<group>"; };
+		8EA5B3D718EAF66C0015B4F1 /* KRBeaconPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBeaconPeripheral.h; sourceTree = "<group>"; };
+		8EA5B3D818EAF66C0015B4F1 /* KRBeaconPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBeaconPeripheral.m; sourceTree = "<group>"; };
 		8EA5B3DB18EB11EE0015B4F1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8EA5B3DD18EB11FA0015B4F1 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		8ED9216D194B494A00E5F843 /* KRBeacons.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBeacons.h; sourceTree = "<group>"; };
+		8ED9216E194B494A00E5F843 /* KRBeacons.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBeacons.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +185,8 @@
 			isa = PBXGroup;
 			children = (
 				8EA5B3D418EAF66C0015B4F1 /* BLE */,
+				8ED9216D194B494A00E5F843 /* KRBeacons.h */,
+				8ED9216E194B494A00E5F843 /* KRBeacons.m */,
 				8EA5B3CD18EACAD90015B4F1 /* KRBeaconFinder.h */,
 				8EA5B3CE18EACAD90015B4F1 /* KRBeaconFinder.m */,
 			);
@@ -191,10 +196,10 @@
 		8EA5B3D418EAF66C0015B4F1 /* BLE */ = {
 			isa = PBXGroup;
 			children = (
-				8EA5B3D518EAF66C0015B4F1 /* KRBeaconCentralManager.h */,
-				8EA5B3D618EAF66C0015B4F1 /* KRBeaconCentralManager.m */,
-				8EA5B3D718EAF66C0015B4F1 /* KRBeaconPeripheralManager.h */,
-				8EA5B3D818EAF66C0015B4F1 /* KRBeaconPeripheralManager.m */,
+				8EA5B3D518EAF66C0015B4F1 /* KRBeaconCentral.h */,
+				8EA5B3D618EAF66C0015B4F1 /* KRBeaconCentral.m */,
+				8EA5B3D718EAF66C0015B4F1 /* KRBeaconPeripheral.h */,
+				8EA5B3D818EAF66C0015B4F1 /* KRBeaconPeripheral.m */,
 			);
 			path = BLE;
 			sourceTree = "<group>";
@@ -313,10 +318,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EA5B3AB18EACA9A0015B4F1 /* ViewController.m in Sources */,
-				8EA5B3DA18EAF66C0015B4F1 /* KRBeaconPeripheralManager.m in Sources */,
+				8EA5B3DA18EAF66C0015B4F1 /* KRBeaconPeripheral.m in Sources */,
 				8EA5B3A518EACA9A0015B4F1 /* AppDelegate.m in Sources */,
-				8EA5B3D918EAF66C0015B4F1 /* KRBeaconCentralManager.m in Sources */,
+				8EA5B3D918EAF66C0015B4F1 /* KRBeaconCentral.m in Sources */,
 				8EA5B3A118EACA9A0015B4F1 /* main.m in Sources */,
+				8ED9216F194B494A00E5F843 /* KRBeacons.m in Sources */,
 				8EA5B3D218EACAD90015B4F1 /* KRBeaconFinder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +450,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeaconFinder/BeaconFinder-Prefix.pch";
 				INFOPLIST_FILE = "BeaconFinder/BeaconFinder-Info.plist";
@@ -458,6 +465,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeaconFinder/BeaconFinder-Prefix.pch";
 				INFOPLIST_FILE = "BeaconFinder/BeaconFinder-Info.plist";

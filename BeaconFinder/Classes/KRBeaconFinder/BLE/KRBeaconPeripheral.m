@@ -1,30 +1,45 @@
 //
 //  KRBeaconPeripheralManager.m
-//  KRBeaconFinder V1.0
+//  KRBeaconFinder V1.2
 //
-//  Created by Kalvar on 2014/4/1.
-//  Copyright (c) 2014年 Kalvar. All rights reserved.
+//  Created by Kalvar on 2013/11/30.
+//  Copyright (c) 2013 - 2014年 Kalvar. All rights reserved.
 //
 
-#import "KRBeaconPeripheralManager.h"
+#import "KRBeaconPeripheral.h"
 #import <CoreBluetooth/CoreBluetooth.h>
 #import <CoreLocation/CoreLocation.h>
 
-@interface KRBeaconPeripheralManager ()<CBPeripheralManagerDelegate>
+@interface KRBeaconPeripheral ()<CBPeripheralManagerDelegate>
 
 @end
 
-@implementation KRBeaconPeripheralManager
+@implementation KRBeaconPeripheral (fixPeripheralData)
+
+-(NSDictionary *)_buildBeaconPeripheralData
+{
+    time_t t;
+    srand((unsigned) time(&t));
+    CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:self.beaconRegion.proximityUUID
+                                                                     major:rand()
+                                                                     minor:rand()
+                                                                identifier:self.beaconRegion.identifier];
+    return [region peripheralDataWithMeasuredPower:nil];
+}
+
+@end
+
+@implementation KRBeaconPeripheral
 
 @synthesize peripheralManager = _peripheralManager;
 @synthesize beaconRegion      = _beaconRegion;
 
-+(instancetype)sharedManager
++(instancetype)sharedPeripheral
 {
     static dispatch_once_t pred;
-    static KRBeaconPeripheralManager *_object = nil;
+    static KRBeaconPeripheral *_object = nil;
     dispatch_once(&pred, ^{
-        _object = [[KRBeaconPeripheralManager alloc] init];
+        _object = [[KRBeaconPeripheral alloc] init];
     });
     return _object;
 }
@@ -56,14 +71,7 @@
         return;
     }
     
-    time_t t;
-    srand((unsigned) time(&t));
-    CLBeaconRegion *region = [[CLBeaconRegion alloc] initWithProximityUUID:_beaconRegion.proximityUUID
-                                                                     major:rand()
-                                                                     minor:rand()
-                                                                identifier:_beaconRegion.identifier];
-    NSDictionary *beaconPeripheralData = [region peripheralDataWithMeasuredPower:nil];
-    [_peripheralManager startAdvertising:beaconPeripheralData];
+    [_peripheralManager startAdvertising:[self _buildBeaconPeripheralData]];
 }
 
 -(void)stopAdvertising
