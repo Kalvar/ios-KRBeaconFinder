@@ -1,6 +1,6 @@
 //
 //  KRBeacons.m
-//  KRBeaconFinder V1.3
+//  KRBeaconFinder V1.4
 //
 //  Created by Kalvar on 2013/07/01.
 //  Copyright (c) 2013 - 2014年 Kalvar. All rights reserved.
@@ -127,8 +127,12 @@
 
 @synthesize locationManager           = _locationManager;
 @synthesize foundBeacons              = _foundBeacons;
+
 @synthesize rangedRegions             = _rangedRegions;
 @synthesize monitoredRegions          = _monitoredRegions;
+
+@synthesize isRanging                 = _isRanging;
+@synthesize isMonitoring              = _isMonitoring;
 
 @synthesize foundBeaconsHandler       = _foundBeaconsHandler;
 @synthesize enterRegionHandler        = _enterRegionHandler;
@@ -158,6 +162,10 @@
         
         _beaconCentral             = [KRBeaconCentral sharedCentral];
         _beaconPeripheral          = [KRBeaconPeripheral sharedPeripheral];
+        
+        _foundBeacons              = nil;
+        _isRanging                 = YES;
+        _isMonitoring              = YES;
         
         _foundBeaconsHandler       = nil;
         _enterRegionHandler        = nil;
@@ -209,6 +217,69 @@
     _beaconRegion = nil;
 }
 
+#pragma --mark Remove Region Methods
+-(void)removeRegion:(CLBeaconRegion *)_beaconRegion
+{
+    if( _regions )
+    {
+        //如果存在就直接刪除
+        if( [_regions containsObject:_beaconRegion] )
+        {
+            [_regions removeObject:_beaconRegion];
+            [_locationManager stopRangingBeaconsInRegion:_beaconRegion];
+            [_locationManager stopMonitoringForRegion:_beaconRegion];
+        }
+        else
+        {
+            //如果不存在就執行 Double Check 進行刪除的動作
+            [self removeRegionWithUuid:_beaconRegion.proximityUUID.UUIDString
+                            identifier:_beaconRegion.identifier
+                                 major:_beaconRegion.major.integerValue
+                                 minor:_beaconRegion.minor.integerValue];
+        }
+    }
+}
+
+-(void)removeRegionWithUuid:(NSString *)_beaconUuid identifier:(NSString *)_beaconIdentifier major:(NSInteger)_beaconMajor minor:(NSInteger)_beaconMinor
+{
+    if( _regions )
+    {
+        //如果不存在就執行 Double Check 進行刪除的動作
+        NSMutableArray *_tempRegions = [_regions copy];
+        for( CLBeaconRegion *_everyRegion in _tempRegions )
+        {
+            //如果 (NSNumber *) Major, Minor 是 nil, 則 integerValue 後會是 0
+            if( [_everyRegion.proximityUUID.UUIDString isEqualToString:_beaconUuid] &&
+                [_everyRegion.identifier isEqualToString:_beaconIdentifier] &&
+                _everyRegion.major.integerValue == _beaconMajor &&
+                _everyRegion.minor.integerValue == _beaconMinor )
+            {
+                [_regions removeObject:_everyRegion];
+                [_locationManager stopRangingBeaconsInRegion:_everyRegion];
+                [_locationManager stopMonitoringForRegion:_everyRegion];
+                //break;
+            }
+        }
+        [_tempRegions removeAllObjects];
+        _tempRegions = nil;
+    }
+}
+
+-(void)removeRegionWithUuid:(NSString *)_beaconUuid identifier:(NSString *)_beaconIdentifier major:(NSInteger)_beaconMajor
+{
+    [self removeRegionWithUuid:_beaconUuid
+                    identifier:_beaconIdentifier
+                         major:_beaconMajor
+                         minor:0];
+}
+
+-(void)removeRegionWithUuid:(NSString *)_beaconUuid identifier:(NSString *)_beaconIdentifier
+{
+    [self removeRegionWithUuid:_beaconUuid
+                    identifier:_beaconIdentifier
+                         major:0];
+}
+
 #pragma --mark Ranging Methods
 /*
  * @ 允許開始監控 iBeacons 的區域( Ranging BeaconRegions )
@@ -241,6 +312,7 @@
     if( [self availableRangeBeacon] )
     {
         [self stopRanging];
+        _isRanging = YES;
         for( CLBeaconRegion *_everyRegion in _regions )
         {
             [_locationManager startRangingBeaconsInRegion:_everyRegion];
@@ -255,6 +327,7 @@
  */
 -(void)stopRanging
 {
+    _isRanging = NO;
     //沒有監控的 Regions
     if (_locationManager.rangedRegions.count == 0)
     {
@@ -300,6 +373,7 @@
     if( [self availableMonitorBeacon] )
     {
         [self stopMonitoring];
+        _isMonitoring = YES;
         for( CLBeaconRegion *_everyRegion in _regions )
         {
             [_locationManager startMonitoringForRegion:_everyRegion];
@@ -312,6 +386,7 @@
  */
 -(void)stopMonitoring
 {
+    _isMonitoring = NO;
     if( [_regions count] > 0 )
     {
         for( CLBeaconRegion *_everyRegion in _regions )

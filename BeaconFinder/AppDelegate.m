@@ -137,7 +137,7 @@
         //無值
         //NSNumber *_major = beaconFinder.beaconRegion.major;
         //NSNumber *_minor = beaconFinder.beaconRegion.minor;
-        
+
         if(state == CLRegionStateInside)
         {
             [beaconFinder fireLocalNotificationWithMessage:@"You're inside the beacon delegate"];

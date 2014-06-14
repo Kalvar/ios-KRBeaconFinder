@@ -1,6 +1,6 @@
 //
 //  KRBeacons.h
-//  KRBeaconFinder V1.3
+//  KRBeaconFinder V1.4
 //
 //  Created by Kalvar on 2013/07/01.
 //  Copyright (c) 2013 - 2014年 Kalvar. All rights reserved.
@@ -54,6 +54,8 @@ typedef void(^DisplayRegionHandler) (CLLocationManager *manager, CLRegion *regio
 @property (nonatomic, strong) NSArray *foundBeacons;
 @property (nonatomic, strong) NSArray *rangedRegions;
 @property (nonatomic, strong) NSArray *monitoredRegions;
+@property (nonatomic, assign) BOOL isRanging;
+@property (nonatomic, assign) BOOL isMonitoring;
 
 //regions will use for ranging and monitoring more different regions of beacon.
 @property (nonatomic, strong) NSMutableArray *regions;
@@ -83,6 +85,12 @@ typedef void(^DisplayRegionHandler) (CLLocationManager *manager, CLRegion *regio
 -(void)addRegionWithUuid:(NSString *)_beaconUuid identifier:(NSString *)_beaconIdentifier major:(NSInteger)_beaconMajor;
 -(void)addRegionWithUuid:(NSString *)_beaconUuid identifier:(NSString *)_beaconIdentifier;
 -(void)addRegion:(CLBeaconRegion *)_beaconRegion;
+
+#pragma --mark Remove Region Methods
+-(void)removeRegion:(CLBeaconRegion *)_beaconRegion;
+-(void)removeRegionWithUuid:(NSString *)_beaconUuid identifier:(NSString *)_beaconIdentifier major:(NSInteger)_beaconMajor minor:(NSInteger)_beaconMinor;
+-(void)removeRegionWithUuid:(NSString *)_beaconUuid identifier:(NSString *)_beaconIdentifier major:(NSInteger)_beaconMajor;
+-(void)removeRegionWithUuid:(NSString *)_beaconUuid identifier:(NSString *)_beaconIdentifier;
 
 #pragma --mark Ranging Methods
 -(BOOL)availableRangeBeacon;

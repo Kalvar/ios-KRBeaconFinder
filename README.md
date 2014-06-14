@@ -202,6 +202,22 @@ More Information see the souce code, any questions you can email me or leave the
     }
 }
 
+-(void)removeRegionSample
+{
+    //It'll remove all beacons from matched the UUID and Identifier.
+    [_beaconFinder removeRegionWithUuid:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" identifier:@"com.kalvar.ibeacons"];
+    
+    //It'll remove all beacons from matched the UUID, Identifier and Major.
+    [_beaconFinder removeRegionWithUuid:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" identifier:@"com.kalvar.ibeacons" major:2540];
+    
+    //It'll remove all beacons from matched the UUID, Identifier, Major and Minor.
+    [_beaconFinder removeRegionWithUuid:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" identifier:@"com.kalvar.ibeacons" major:2540 minor:1028];
+    
+    //It'll remove the specified region.
+    CLBeaconRegion *_beaconRegion = [[CLBeaconRegion alloc] initWithProximityUUID:[[NSUUID alloc] initWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" ] identifier:@"com.kalvar.ibeacons"];
+    [_beaconFinder removeRegion:_beaconRegion];
+}
+
 #pragma --mark KRBeaconFinderDelegate
 -(void)krBeaconFinder:(KRBeaconFinder *)krBeaconFinder didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
 {
@@ -228,7 +244,7 @@ More Information see the souce code, any questions you can email me or leave the
 
 ## Version
 
-V1.3.
+V1.4.
 
 ## License
 
