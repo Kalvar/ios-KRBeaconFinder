@@ -1,12 +1,12 @@
 ## About
 
-KRBeaconFinder is a easy finding and scanning the nearby beacons, you can lazy using CoreLocation ( GPS ) to monitor beacon regions or use CoreBluetooth ( BLE ) to scan the beacons. It also can simulate beacon adversting from peripheral adversting.
+KRBeaconFinder can lazy scanning beacons, relax using CoreLocation to monitor beacon-regions or use CoreBluetooth (BLE) to scan. It also can simulate beacon adversting from peripheral adversting.
 
-More Information see the souce code or email me.
+More Information see the souce code, any questions you can email me or leave the messages to discussion to help more people.
 
 ## How To Get Started
 
-### If you just wanna watch one ibeacon device, you can direct using KRBeaconOne.
+#### You can KRBeaconOne to find and monitor only one iBeacon.
 
 ``` objective-c
 #import "KRBeaconOne.h"
@@ -114,7 +114,7 @@ More Information see the souce code or email me.
 }
 ```
 
-### If you wanna watch more ibeacons, you can use KRBeaconFinder.
+#### You can use KRBeaconFinder to find and monitor more different iBeacons.
 
 ``` objective-c
 #import "KRBeaconFinder.h"
