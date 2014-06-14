@@ -261,7 +261,6 @@
 				ORGANIZATIONNAME = Kalvar;
 				TargetAttributes = {
 					8EA5B39018EACA9A0015B4F1 = {
-						DevelopmentTeam = 8ST7WGA6ZS;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
