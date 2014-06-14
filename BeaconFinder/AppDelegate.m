@@ -1,8 +1,8 @@
 //
 //  AppDelegate.m
-//  BeaconFinder
+//  KRBeaconFinder
 //
-//  Created by Kalvar on 2013/11/30.
+//  Created by Kalvar on 2013/07/01.
 //  Copyright (c) 2013 - 2014年 Kalvar. All rights reserved.
 //
 
@@ -18,10 +18,10 @@
     /*
      * @ 一定要在 AppDelegate 裡實行 Monitoring 才能正確的監控「背景移除 App 後，還能在鎖屏畫面下呈現 iBeacon 通知」的功能。
      */
-    _beaconFinder            = [KRBeaconFinder sharedFinder];
-    _beaconFinder.meDelegate = self;
-    _beaconFinder.uuid       = @"B9407F30-F5F8-466E-AFF9-25556B57FE6D";
-    _beaconFinder.identifier = @"com.kalvar.ibeacons";
+    _beaconFinder             = [KRBeaconOne sharedFinder];
+    _beaconFinder.oneDelegate = self;
+    _beaconFinder.uuid        = @"B9407F30-F5F8-466E-AFF9-25556B57FE6D";
+    _beaconFinder.identifier  = @"com.kalvar.ibeacons";
     [_beaconFinder awakeDisplay];
     
     /*
@@ -113,7 +113,7 @@
 }
 
 #pragma --mark KRBeaconFinderDelegate
--(void)krBeaconFinder:(KRBeaconFinder *)beaconFinder didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
+-(void)krBeaconOne:(KRBeaconOne *)beaconFinder didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
 {
     NSLog(@"state : %i", [UIApplication sharedApplication].applicationState);
     
@@ -130,6 +130,14 @@
      */
     if( [UIApplication sharedApplication].applicationState != UIApplicationStateActive )
     {
+        //如果指定監控的 BeaconRegion 裡有設定 Major / Minor 的話，這裡就能取得值，否則無值。
+        //CLBeaconRegion *_beaconRegion = (CLBeaconRegion *)region;
+        //NSLog(@"_beaconRegion : %i, %i", [_beaconRegion.major integerValue], [_beaconRegion.minor integerValue]);
+        
+        //無值
+        //NSNumber *_major = beaconFinder.beaconRegion.major;
+        //NSNumber *_minor = beaconFinder.beaconRegion.minor;
+        
         if(state == CLRegionStateInside)
         {
             [beaconFinder fireLocalNotificationWithMessage:@"You're inside the beacon delegate"];

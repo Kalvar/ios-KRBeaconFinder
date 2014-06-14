@@ -2,12 +2,12 @@
 //  ViewController.m
 //  KRBeaconFinder
 //
-//  Created by Kalvar on 2013/11/30.
+//  Created by Kalvar on 2013/07/01.
 //  Copyright (c) 2013 - 2014年 Kalvar. All rights reserved.
 //
 
 #import "ViewController.h"
-#import "KRBeaconFinder.h"
+#import "KRBeaconOne.h"
 #import "AppDelegate.h"
 
 @interface ViewController ()
@@ -45,7 +45,7 @@
     //Let's get start in Beacons coding ...
     
     //Same as [(AppDelegate *)[UIApplication sharedApplication].delegate beaconFinder];
-    self.beaconFinder        = [KRBeaconFinder sharedFinder];
+    self.beaconFinder          = [KRBeaconOne sharedFinder];
     
     //_beaconFinder.uuid       = @"B9407F30-F5F8-466E-AFF9-25556B57FE6D";
     //_beaconFinder.identifier = @"com.kalvar.ibeacons";

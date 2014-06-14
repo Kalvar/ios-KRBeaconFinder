@@ -6,12 +6,12 @@ More Information see the souce code or email me.
 
 ## How To Get Started
 
-# If you just wanna watch one ibeacon device, you can direct using KRBeaconFinder.
+### If you just wanna watch one ibeacon device, you can direct using KRBeaconOne.
 
 ``` objective-c
-#import "KRBeaconFinder.h"
+#import "KRBeaconOne.h"
 
-@interface ViewController ()<KRBeaconFinderDelegate>
+@interface ViewController ()<KRBeaconOneDelegate>
 
 @end
 
@@ -21,7 +21,7 @@ More Information see the souce code or email me.
  	   
     __weak typeof(self) _weakSelf = self;
     
-    self.beaconFinder        = [KRBeaconFinder sharedFinder];
+    self.beaconFinder        = [KRBeaconOne sharedFinder];
     _beaconFinder.uuid       = @"B9407F30-F5F8-466E-AFF9-25556B57FE6D";
     _beaconFinder.identifier = @"com.kalvar.ibeacons";
     _beaconFinder.meDelegate = self;
@@ -93,8 +93,8 @@ More Information see the souce code or email me.
     }
 }
 
-#pragma --mark KRBeaconFinderDelegate
--(void)krBeaconFinder:(KRBeaconFinder *)beaconFinder didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
+#pragma --mark KRBeaconOneDelegate
+-(void)krBeaconOne:(KRBeaconOne *)beaconFinder didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
 {
     if( [UIApplication sharedApplication].applicationState != UIApplicationStateActive )
     {
@@ -114,12 +114,12 @@ More Information see the souce code or email me.
 }
 ```
 
-# If you wanna watch more ibeacons, you can use KRBeacons.
+### If you wanna watch more ibeacons, you can use KRBeaconFinder.
 
 ``` objective-c
-#import "KRBeacons.h"
+#import "KRBeaconFinder.h"
 
-@interface ViewController ()<KRBeaconsDelegate>
+@interface ViewController ()<KRBeaconFinderDelegate>
 
 @end
 
@@ -129,7 +129,7 @@ More Information see the souce code or email me.
        
     __weak typeof(self) _weakSelf = self;
     
-    self.beaconFinder      = [KRBeacons sharedInstance];
+    self.beaconFinder      = [KRBeaconFinder sharedFinder];
     _beaconFinder.delegate = self;
     [_beaconFinder addRegionWithUuid:@"A9407F30-F5F8-466E-AFF9-25556B57FE6D" identifier:@"com.kalvar.ibeacons1"];
     [_beaconFinder addRegionWithUuid:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" identifier:@"com.kalvar.ibeacons2"];
@@ -202,8 +202,8 @@ More Information see the souce code or email me.
     }
 }
 
-#pragma --mark KRBeaconsDelegate
--(void)krBeacons:(KRBeacons *)krBeacons didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
+#pragma --mark KRBeaconFinderDelegate
+-(void)krBeaconFinder:(KRBeaconFinder *)krBeaconFinder didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
 {
     if( [UIApplication sharedApplication].applicationState != UIApplicationStateActive )
     {
@@ -228,7 +228,7 @@ More Information see the souce code or email me.
 
 ## Version
 
-V1.2.
+V1.3.
 
 ## License
 

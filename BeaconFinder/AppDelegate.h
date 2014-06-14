@@ -1,18 +1,18 @@
 //
 //  AppDelegate.h
-//  BeaconFinder
+//  KRBeaconFinder
 //
-//  Created by Kalvar on 2013/11/30.
+//  Created by Kalvar on 2013/07/01.
 //  Copyright (c) 2013 - 2014年 Kalvar. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "KRBeaconFinder.h"
+#import "KRBeaconOne.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate, KRBeaconFinderDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, CLLocationManagerDelegate, KRBeaconOneDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic, strong) CLLocationManager *locationManager;
-@property (nonatomic, strong) KRBeaconFinder *beaconFinder;
+@property (nonatomic, strong) KRBeaconOne *beaconFinder;
 
 @end

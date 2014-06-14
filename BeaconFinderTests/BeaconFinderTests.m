@@ -1,8 +1,8 @@
 //
-//  BeaconFinderTests.m
-//  BeaconFinderTests
+//  KRBeaconFinderTests.m
+//  KRBeaconFinderTests
 //
-//  Created by Kalvar on 2013/11/30.
+//  Created by Kalvar on 2013/07/01.
 //  Copyright (c) 2013 - 2014年 Kalvar. All rights reserved.
 //
 
