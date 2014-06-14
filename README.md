@@ -6,7 +6,7 @@ More Information see the souce code, any questions you can email me or leave the
 
 ## How To Get Started
 
-#### You can KRBeaconOne to find and monitor only one iBeacon.
+#### You can use KRBeaconOne to find and monitor only one iBeacon.
 
 ``` objective-c
 #import "KRBeaconOne.h"
