@@ -38,13 +38,15 @@
 -(void)addRegionWithUuid:(NSString *)_beaconUuid identifier:(NSString *)_beaconIdentifier major:(NSInteger)_beaconMajor minor:(NSInteger)_beaconMinor;
 
 #pragma --mark Override Ranging Methods
+-(void)rangingWithBeaconsFounder:(FoundBeaconsHandler)_founder;
 -(void)ranging;
 -(void)stopRanging;
 
 #pragma --mark Monitoring Methods
+-(void)monitoringWithDisplayHandler:(DisplayRegionHandler)_handler;
 -(void)monitoring;
 -(void)stopMonitoring;
--(void)awakeDisplayWithRequestCompletion:(DisplayRegionHandler)_completion;
+-(void)awakeDisplayWithFoundCompletion:(DisplayRegionHandler)_completion;
 -(void)awakeDisplay;
 
 @end

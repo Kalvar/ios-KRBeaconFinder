@@ -79,6 +79,7 @@
     }];
     
     /*
+    //It works without write in AppDelegate, but you must be uniform integration the processing and coding-style in one scope.
     [_beaconFinder setDisplayRegionHandler:^(CLLocationManager *manager, CLRegion *region, CLRegionState state)
     {
         if(state == CLRegionStateInside)
@@ -132,12 +133,12 @@
     if (theSwitch.on)
     {
         [_beaconFinder ranging];
-        [_beaconFinder monitoring];
+        //[_beaconFinder monitoring];
     }
     else
     {
         [_beaconFinder stopRanging];
-        [_beaconFinder stopMonitoring];
+        //[_beaconFinder stopMonitoring];
     }
 }
 

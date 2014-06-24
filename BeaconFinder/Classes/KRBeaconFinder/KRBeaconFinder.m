@@ -248,7 +248,7 @@
         NSMutableArray *_tempRegions = [_regions copy];
         for( CLBeaconRegion *_everyRegion in _tempRegions )
         {
-            //如果 (NSNumber *) Major, Minor 是 nil, 則 integerValue 後會是 0
+            //如果 (NSNumber *) Major, Minor 是 nil, 則 integerValue 會是 0
             if( [_everyRegion.proximityUUID.UUIDString isEqualToString:_beaconUuid] &&
                 [_everyRegion.identifier isEqualToString:_beaconIdentifier] &&
                 _everyRegion.major.integerValue == _beaconMajor &&
@@ -282,9 +282,9 @@
 
 #pragma --mark Ranging Methods
 /*
- * @ 允許開始監控 iBeacons 的區域( Ranging BeaconRegions )
+ * @ 允許搜索 iBeacons( Allows Ranging BeaconRegions )
  */
--(BOOL)availableRangeBeacon
+-(BOOL)canRangeBeacon
 {
     if( !_locationManager )
     {
@@ -304,12 +304,10 @@
     return YES;
 }
 
-/*
- * @ 開始範圍搜索多顆 Beacons
- */
--(void)ranging
+-(void)rangingWithBeaconsFounder:(FoundBeaconsHandler)_founder
 {
-    if( [self availableRangeBeacon] )
+    self.foundBeaconsHandler = _founder;
+    if( [self canRangeBeacon] )
     {
         [self stopRanging];
         _isRanging = YES;
@@ -323,7 +321,15 @@
 }
 
 /*
- * @ 停止範圍搜索與監控多個 Beacons 區域
+ * @ 開始範圍搜索多顆 Beacons
+ */
+-(void)ranging
+{
+    [self rangingWithBeaconsFounder:_foundBeaconsHandler];
+}
+
+/*
+ * @ 停止範圍搜索多顆 Beacons
  */
 -(void)stopRanging
 {
@@ -344,7 +350,7 @@
 }
 
 #pragma --mark Monitoring Methods
--(BOOL)availableMonitorBeacon
+-(BOOL)canMonitorBeacon
 {
     if( !_locationManager )
     {
@@ -365,12 +371,10 @@
     return YES;
 }
 
-/*
- * @ 開始監控 Beacons
- */
--(void)monitoring
+-(void)monitoringWithDisplayHandler:(DisplayRegionHandler)_handler
 {
-    if( [self availableMonitorBeacon] )
+    self.displayRegionHandler = _handler;
+    if( [self canMonitorBeacon] )
     {
         [self stopMonitoring];
         _isMonitoring = YES;
@@ -379,6 +383,14 @@
             [_locationManager startMonitoringForRegion:_everyRegion];
         }
     }
+}
+
+/*
+ * @ 開始監控 Beacons
+ */
+-(void)monitoring
+{
+    [self monitoringWithDisplayHandler:_displayRegionHandler];
 }
 
 /*
@@ -404,7 +416,7 @@
  */
 -(void)requestState
 {
-    if( [self availableMonitorBeacon] )
+    if( [self canMonitorBeacon] )
     {
         for( CLBeaconRegion *_everyRegion in _regions )
         {
@@ -424,10 +436,10 @@
  *     順利能進到 locationManager:didDetermineState:forRegion: 委派方法裡。
  *
  */
--(void)awakeDisplayWithRequestCompletion:(DisplayRegionHandler)_completion
+-(void)awakeDisplayWithFoundCompletion:(DisplayRegionHandler)_completion
 {
     self.displayRegionHandler = _completion;
-    if( [self availableMonitorBeacon] )
+    if( [self canMonitorBeacon] )
     {
         [self monitoring];
         //[self requestState];
@@ -436,7 +448,7 @@
 
 -(void)awakeDisplay
 {
-    [self awakeDisplayWithRequestCompletion:_displayRegionHandler];
+    [self awakeDisplayWithFoundCompletion:_displayRegionHandler];
 }
 
 #pragma --mark BLE Public Methods

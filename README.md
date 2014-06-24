@@ -135,6 +135,13 @@ More Information see the souce code, any questions you can email me or leave the
     [_beaconFinder addRegionWithUuid:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" identifier:@"com.kalvar.ibeacons2"];
     [_beaconFinder addRegionWithUuid:@"C9407F30-F5F8-466E-AFF9-25556B57FE6D" identifier:@"com.kalvar.ibeacons3"];
 
+    //建立要讓 App 發廣播的 BeaconRegion, 這能讓 iPhone 變成客製化的 iBeacon
+    //Build the beacon region of advertising within use app which can be customized iBeacon.
+    [_beaconFinder createAdvertisingRegionWithUuid:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"
+                                        identifier:@"com.kalvar.ibeacons"
+                                             major:55000
+                                             minor:65000];
+
     __weak typeof(_beaconFinder) _weakBeaconFinder = _beaconFinder;
     
     [_beaconFinder setFoundBeaconsHandler:^(NSArray *foundBeacons, CLBeaconRegion *beaconRegion)
@@ -244,7 +251,7 @@ More Information see the souce code, any questions you can email me or leave the
 
 ## Version
 
-V1.4.
+V1.5.
 
 ## License
 

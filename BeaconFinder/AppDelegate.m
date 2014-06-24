@@ -113,10 +113,11 @@
 }
 
 #pragma --mark KRBeaconFinderDelegate
+//When the app dropped from background of iphone that you must be implement this delegate to confirm the method can be successfully waking up.
 -(void)krBeaconOne:(KRBeaconOne *)beaconFinder didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
 {
     NSLog(@"state : %i", [UIApplication sharedApplication].applicationState);
-    
+
     /*
      * @ [UIApplication sharedApplication].applicationState
      *

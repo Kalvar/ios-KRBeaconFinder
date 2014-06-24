@@ -93,16 +93,18 @@ typedef void(^DisplayRegionHandler) (CLLocationManager *manager, CLRegion *regio
 -(void)removeRegionWithUuid:(NSString *)_beaconUuid identifier:(NSString *)_beaconIdentifier;
 
 #pragma --mark Ranging Methods
--(BOOL)availableRangeBeacon;
+-(BOOL)canRangeBeacon;
+-(void)rangingWithBeaconsFounder:(FoundBeaconsHandler)_founder;
 -(void)ranging;
 -(void)stopRanging;
 
 #pragma --mark Monitoring Methods
--(BOOL)availableMonitorBeacon;
+-(BOOL)canMonitorBeacon;
+-(void)monitoringWithDisplayHandler:(DisplayRegionHandler)_handler;
 -(void)monitoring;
 -(void)stopMonitoring;
 -(void)requestState;
--(void)awakeDisplayWithRequestCompletion:(DisplayRegionHandler)_completion;
+-(void)awakeDisplayWithFoundCompletion:(DisplayRegionHandler)_completion;
 -(void)awakeDisplay;
 
 #pragma --mark BLE Public Methods
