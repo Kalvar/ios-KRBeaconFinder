@@ -1,6 +1,6 @@
 //
 //  KRBeacons.h
-//  KRBeaconFinder V1.4
+//  KRBeaconFinder V1.5
 //
 //  Created by Kalvar on 2013/07/01.
 //  Copyright (c) 2013 - 2014年 Kalvar. All rights reserved.
@@ -59,6 +59,7 @@ typedef void(^DisplayRegionHandler) (CLLocationManager *manager, CLRegion *regio
 
 //regions will use for ranging and monitoring more different regions of beacon.
 @property (nonatomic, strong) NSMutableArray *regions;
+@property (nonatomic, strong) CLBeaconRegion *adverstingRegion;
 
 @property (nonatomic, copy) FoundBeaconsHandler foundBeaconsHandler;
 @property (nonatomic, copy) EnterRegionHandler enterRegionHandler;
@@ -91,6 +92,9 @@ typedef void(^DisplayRegionHandler) (CLLocationManager *manager, CLRegion *regio
 -(void)removeRegionWithUuid:(NSString *)_beaconUuid identifier:(NSString *)_beaconIdentifier major:(NSInteger)_beaconMajor minor:(NSInteger)_beaconMinor;
 -(void)removeRegionWithUuid:(NSString *)_beaconUuid identifier:(NSString *)_beaconIdentifier major:(NSInteger)_beaconMajor;
 -(void)removeRegionWithUuid:(NSString *)_beaconUuid identifier:(NSString *)_beaconIdentifier;
+
+#pragma --mark Create Adversting Beacon Region Methods
+-(void)createAdvertisingRegionWithUuid:(NSString *)_uuid identifier:(NSString *)_identifier major:(NSUInteger)_major minor:(NSUInteger)_minor;
 
 #pragma --mark Ranging Methods
 -(BOOL)canRangeBeacon;

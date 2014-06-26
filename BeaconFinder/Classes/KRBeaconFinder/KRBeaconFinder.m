@@ -1,6 +1,6 @@
 //
 //  KRBeacons.m
-//  KRBeaconFinder V1.4
+//  KRBeaconFinder V1.5
 //
 //  Created by Kalvar on 2013/07/01.
 //  Copyright (c) 2013 - 2014年 Kalvar. All rights reserved.
@@ -133,6 +133,7 @@
 
 @synthesize isRanging                 = _isRanging;
 @synthesize isMonitoring              = _isMonitoring;
+@synthesize adverstingRegion          = _adverstingRegion;
 
 @synthesize foundBeaconsHandler       = _foundBeaconsHandler;
 @synthesize enterRegionHandler        = _enterRegionHandler;
@@ -166,6 +167,7 @@
         _foundBeacons              = nil;
         _isRanging                 = YES;
         _isMonitoring              = YES;
+        _adverstingRegion          = nil;
         
         _foundBeaconsHandler       = nil;
         _enterRegionHandler        = nil;
@@ -278,6 +280,16 @@
     [self removeRegionWithUuid:_beaconUuid
                     identifier:_beaconIdentifier
                          major:0];
+}
+
+#pragma --mark Create Adversting Beacon Region Methods
+-(void)createAdvertisingRegionWithUuid:(NSString *)_uuid identifier:(NSString *)_identifier major:(NSUInteger)_major minor:(NSUInteger)_minor
+{
+    self.adverstingRegion = [self _makeBeaconRegionWithUuid:_uuid
+                                                 identifier:_identifier
+                                                      major:_major
+                                                      minor:_minor
+                                                 notifyMode:KRBeaconNotifyModeDefault];
 }
 
 #pragma --mark Ranging Methods
@@ -511,6 +523,17 @@
 -(void)setDisplayRegionHandler:(DisplayRegionHandler)_theBlock
 {
     _displayRegionHandler  = _theBlock;
+}
+
+#pragma --mark Setters
+-(void)setAdverstingRegion:(CLBeaconRegion *)_theAdverstingRegion
+{
+    _adverstingRegion = _theAdverstingRegion;
+    //同步設定 beaconPeripheral 要廣播的 beaconRegion
+    if( self.beaconPeripheral )
+    {
+        _beaconPeripheral.beaconRegion = _adverstingRegion;
+    }
 }
 
 #pragma --mark Getters

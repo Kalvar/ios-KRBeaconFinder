@@ -1,6 +1,6 @@
 //
 //  KRBeaconFinder.m
-//  KRBeaconFinder V1.4
+//  KRBeaconFinder V1.5
 //
 //  Created by Kalvar on 2013/07/01.
 //  Copyright (c) 2013 - 2014年 Kalvar. All rights reserved.
@@ -224,6 +224,7 @@
 -(void)setBeaconRegion:(CLBeaconRegion *)_theBeaconRegion
 {
     _beaconRegion = _theBeaconRegion;
+    //同步設定 beaconPeripheral 要廣播的 beaconRegion
     if( self.beaconPeripheral )
     {
         self.beaconPeripheral.beaconRegion = _beaconRegion;

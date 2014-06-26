@@ -44,6 +44,16 @@
     
     //Let's get start in Beacons coding ...
     
+    //建立要讓 App 發廣播的 BeaconRegion, 這能讓 iPhone 變成客製化的 iBeacon
+    //Build the beacon region of advertising within use app which can be customized iBeacon.
+    /*
+    self.beaconFinder          = [KRBeaconFinder sharedFinder];
+    [_beaconFinder createAdvertisingRegionWithUuid:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"
+                                        identifier:@"com.kalvar.ibeacons"
+                                             major:55000
+                                             minor:65000];
+    //*/
+    
     //Same as [(AppDelegate *)[UIApplication sharedApplication].delegate beaconFinder];
     self.beaconFinder          = [KRBeaconOne sharedFinder];
     
