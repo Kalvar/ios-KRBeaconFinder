@@ -109,11 +109,11 @@
     
     /*
     //It works for watching more iBeacons.
-    [[KRBeacons sharedInstance] addRegionWithUuid:@"A9407F30-F5F8-466E-AFF9-25556B57FE6D" identifier:@"com.kalvar.ibeacons1"];
-    [[KRBeacons sharedInstance] addRegionWithUuid:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" identifier:@"com.kalvar.ibeacons2"];
-    [[KRBeacons sharedInstance] addRegionWithUuid:@"C9407F30-F5F8-466E-AFF9-25556B57FE6D" identifier:@"com.kalvar.ibeacons3"];
-    [[KRBeacons sharedInstance] ranging];
-    [[KRBeacons sharedInstance] monitoring];
+    [[KRBeaconFinder sharedFinder] addRegionWithUuid:@"A9407F30-F5F8-466E-AFF9-25556B57FE6D" identifier:@"com.kalvar.ibeacons1"];
+    [[KRBeaconFinder sharedFinder] addRegionWithUuid:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D" identifier:@"com.kalvar.ibeacons2"];
+    [[KRBeaconFinder sharedFinder] addRegionWithUuid:@"C9407F30-F5F8-466E-AFF9-25556B57FE6D" identifier:@"com.kalvar.ibeacons3"];
+    [[KRBeaconFinder sharedFinder] ranging];
+    [[KRBeaconFinder sharedFinder] monitoring];
      */
     
 }
