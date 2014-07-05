@@ -241,8 +241,8 @@
             proximityString = @"Unknown";
             break;
     }
-    defaultCell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@ • %@ • %f • %li • %.2fm",
-                                        beacon.major.stringValue, beacon.minor.stringValue, proximityString, beacon.accuracy, (long)beacon.rssi, beacon.accuracy];
+    defaultCell.detailTextLabel.text = [NSString stringWithFormat:@"%@, %@ • %@ • %.2fm • %li",
+                                        beacon.major.stringValue, beacon.minor.stringValue, proximityString, beacon.accuracy, (long)beacon.rssi];
     defaultCell.detailTextLabel.textColor = [UIColor grayColor];
     
     return defaultCell;

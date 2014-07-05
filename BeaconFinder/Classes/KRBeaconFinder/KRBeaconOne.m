@@ -99,8 +99,8 @@
     {
         _uuid                         = nil;
         _identifier                   = nil;
-        _major                        = -1;
-        _minor                        = -1;
+        _major                        = 0;
+        _minor                        = 0;
         
         _notifyOnDisplay              = YES;
         _notifyOnEntry                = YES;
@@ -184,12 +184,14 @@
      *     改成直接用 self.displayRegionHandler 的模式直接取用父類別的參數，並且再賦值或呼叫運作即可。
      *
      */
+    //super.displayRegionHandler = _completion;
     self.displayRegionHandler = _completion;
     [self monitoring];
 }
 
 -(void)awakeDisplay
 {
+    //super.displayRegionHandler
     [self awakeDisplayWithFoundCompletion:self.displayRegionHandler];
 }
 

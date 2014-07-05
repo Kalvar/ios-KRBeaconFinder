@@ -119,6 +119,15 @@
     NSLog(@"state : %i", [UIApplication sharedApplication].applicationState);
     
     /*
+     * @ 2014.05.05 PM 23:30
+     *
+     * @ 存活實驗結果
+     *   - App 從背景被除後，收到 Beacons 訊號進行喚醒時，可以跑 NSTimer，
+     *     存活時間同樣是 10 秒內，平均執行時間為 8 秒，測得數據為 6 ~ 10 秒，
+     *     必須把執行效能壓在 8 秒內較保險，如果超出 8 秒，就做 Timeout 的處理，
+     *     把未做完的事件暫存起來，等待下一次繼續接著做完。
+     */
+    /*
      * @ [UIApplication sharedApplication].applicationState
      *
      *   UIApplicationStateActive     , 0 : App 前台活動中
@@ -139,6 +148,12 @@
         //NSNumber *_major = beaconFinder.beaconRegion.major;
         //NSNumber *_minor = beaconFinder.beaconRegion.minor;
         
+        /*
+         * @ 2014.06.08 PM 22:50
+         *   - 實測後發現，region.center 在 iOS 7.1.1 已經取不出任何經緯度。
+         *   - 要改用 beaconFinder.locationManager.location.coordinate 的方式來取。
+         *
+         */
         if(state == CLRegionStateInside)
         {
             [beaconFinder fireLocalNotificationWithMessage:@"You're inside the beacon delegate"];
