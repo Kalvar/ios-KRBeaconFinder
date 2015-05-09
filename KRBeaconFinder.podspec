@@ -14,5 +14,5 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.public_header_files = 'KRBeaconFinder/*.h'
   s.source_files = 'KRBeaconFinder/KRBeaconFinder.h'
-  s.frameworks   = 'Foundation', 'CoreBluetooth', 'CoreLocation', 
+  s.frameworks   = 'Foundation', 'CoreBluetooth', 'CoreLocation'
 end 
