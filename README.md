@@ -1,120 +1,19 @@
 ## About
 
-KRBeaconFinder can lazy scanning beacons, relax using CoreLocation to monitor beacon-regions or use CoreBluetooth (BLE) to scan. It also can simulate beacon adversting from peripheral adversting.
+KRBeaconFinder can lazy scanning beacons, relax using CoreLocation to monitor beacon-regions or use CoreBluetooth (BLE) to scan. And auto pop-up the message to notify users when they locked on the screen. It also can simulate beacon adversting from peripheral adversting.
 
-More Information see the souce code, any questions you can email me or leave the messages to discussion to help more people.
+More Information see the souce code, any question you can email me or leave the messages to discussion.
+
+#### Podfile
+
+```ruby
+platform :ios, '7.0'
+pod "KRBeaconFinder", "~> 1.5"
+```
 
 ## How To Get Started
 
-#### You can use KRBeaconOne to find and monitor only one iBeacon.
-
-``` objective-c
-#import "KRBeaconOne.h"
-
-@interface ViewController ()<KRBeaconOneDelegate>
-
-@end
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
- 	   
-    __weak typeof(self) _weakSelf = self;
-    
-    self.beaconFinder        = [KRBeaconOne sharedFinder];
-    _beaconFinder.uuid       = @"B9407F30-F5F8-466E-AFF9-25556B57FE6D";
-    _beaconFinder.identifier = @"com.kalvar.ibeacons";
-    _beaconFinder.meDelegate = self;
-
-    __weak typeof(_beaconFinder) _weakBeaconFinder = _beaconFinder;
-    
-    [_beaconFinder setFoundBeaconsHandler:^(NSArray *foundBeacons, CLBeaconRegion *beaconRegion)
-    {
-        _weakSelf.detectedBeacons = foundBeacons;
-        [_weakSelf.beaconTableView reloadData];
-    }];
-    
-    [_beaconFinder setBleScanningEnumerator:^(CBPeripheral *peripheral, NSDictionary *advertisements, NSNumber *RSSI)
-    {
-        NSLog(@"The advertisement with identifer: %@, state: %d, name: %@, services: %@,  description: %@",
-              [peripheral identifier],
-              [peripheral state],
-              [peripheral name],
-              [peripheral services],
-              [advertisements description]);
-    }];
-    
-    [_beaconFinder setEnterRegionHandler:^(CLLocationManager *manager, CLRegion *region)
-    {
-        [_weakBeaconFinder fireLocalNotificationWithMessage:@"Enter region notification" userInfo:@{@"key" : @"doShareToPeople"}];
-    }];
-    
-    [_beaconFinder setExitRegionHandler:^(CLLocationManager *manager, CLRegion *region)
-    {
-        [_weakBeaconFinder fireLocalNotificationWithMessage:@"Exit region notification"];
-    }];
-
-}
-
-#pragma --mark Switch Actions
--(void)simulateBeaconAdversting
-{
-    if ( self.isSimulateBeaconAdversting )
-    {
-        [_beaconFinder bleAdversting];
-    }
-    else
-    {
-        [_beaconFinder bleStopAdversting];
-    }
-}
-
--(void)monitorBeaconRegions
-{
-    if ( self.isMonitoringBeaconRegions )
-    {
-        [_beaconFinder ranging];
-    }
-    else
-    {
-        [_beaconFinder stopRanging];
-    }
-}
-
--(void)bleScanBeacons
-{
-    if ( self.isBleScanBeacons )
-    {
-        [_beaconFinder bleScan];
-    }
-    else
-    {
-        [_beaconFinder bleStopScan];
-    }
-}
-
-#pragma --mark KRBeaconOneDelegate
--(void)krBeaconOne:(KRBeaconOne *)beaconFinder didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
-{
-    if( [UIApplication sharedApplication].applicationState != UIApplicationStateActive )
-    {
-        if(state == CLRegionStateInside)
-        {
-            [beaconFinder fireLocalNotificationWithMessage:@"You're inside the beacon delegate"];
-        }
-        else if(state == CLRegionStateOutside)
-        {
-            [beaconFinder fireLocalNotificationWithMessage:@"You're outside the beacon delegate"];
-        }
-        else
-        {
-            return;
-        }
-    }
-}
-```
-
-#### You can use KRBeaconFinder to find and monitor more different iBeacons.
+#### Use KRBeaconFinder to find and monitor more different beacons.
 
 ``` objective-c
 #import "KRBeaconFinder.h"
@@ -237,6 +136,114 @@ More Information see the souce code, any questions you can email me or leave the
         else if(state == CLRegionStateOutside)
         {
             [krBeacons fireLocalNotificationWithMessage:@"You're outside the beacon delegate"];
+        }
+        else
+        {
+            return;
+        }
+    }
+}
+```
+
+#### Use KRBeaconOne to find and monitor just one beacon.
+
+``` objective-c
+#import "KRBeaconOne.h"
+
+@interface ViewController ()<KRBeaconOneDelegate>
+
+@end
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+ 	   
+    __weak typeof(self) _weakSelf = self;
+    
+    self.beaconFinder        = [KRBeaconOne sharedFinder];
+    _beaconFinder.uuid       = @"B9407F30-F5F8-466E-AFF9-25556B57FE6D";
+    _beaconFinder.identifier = @"com.kalvar.ibeacons";
+    _beaconFinder.meDelegate = self;
+
+    __weak typeof(_beaconFinder) _weakBeaconFinder = _beaconFinder;
+    
+    [_beaconFinder setFoundBeaconsHandler:^(NSArray *foundBeacons, CLBeaconRegion *beaconRegion)
+    {
+        _weakSelf.detectedBeacons = foundBeacons;
+        [_weakSelf.beaconTableView reloadData];
+    }];
+    
+    [_beaconFinder setBleScanningEnumerator:^(CBPeripheral *peripheral, NSDictionary *advertisements, NSNumber *RSSI)
+    {
+        NSLog(@"The advertisement with identifer: %@, state: %d, name: %@, services: %@,  description: %@",
+              [peripheral identifier],
+              [peripheral state],
+              [peripheral name],
+              [peripheral services],
+              [advertisements description]);
+    }];
+    
+    [_beaconFinder setEnterRegionHandler:^(CLLocationManager *manager, CLRegion *region)
+    {
+        [_weakBeaconFinder fireLocalNotificationWithMessage:@"Enter region notification" userInfo:@{@"key" : @"doShareToPeople"}];
+    }];
+    
+    [_beaconFinder setExitRegionHandler:^(CLLocationManager *manager, CLRegion *region)
+    {
+        [_weakBeaconFinder fireLocalNotificationWithMessage:@"Exit region notification"];
+    }];
+
+}
+
+#pragma --mark Switch Actions
+-(void)simulateBeaconAdversting
+{
+    if ( self.isSimulateBeaconAdversting )
+    {
+        [_beaconFinder bleAdversting];
+    }
+    else
+    {
+        [_beaconFinder bleStopAdversting];
+    }
+}
+
+-(void)monitorBeaconRegions
+{
+    if ( self.isMonitoringBeaconRegions )
+    {
+        [_beaconFinder ranging];
+    }
+    else
+    {
+        [_beaconFinder stopRanging];
+    }
+}
+
+-(void)bleScanBeacons
+{
+    if ( self.isBleScanBeacons )
+    {
+        [_beaconFinder bleScan];
+    }
+    else
+    {
+        [_beaconFinder bleStopScan];
+    }
+}
+
+#pragma --mark KRBeaconOneDelegate
+-(void)krBeaconOne:(KRBeaconOne *)beaconFinder didDetermineState:(CLRegionState)state forRegion:(CLRegion *)region
+{
+    if( [UIApplication sharedApplication].applicationState != UIApplicationStateActive )
+    {
+        if(state == CLRegionStateInside)
+        {
+            [beaconFinder fireLocalNotificationWithMessage:@"You're inside the beacon delegate"];
+        }
+        else if(state == CLRegionStateOutside)
+        {
+            [beaconFinder fireLocalNotificationWithMessage:@"You're outside the beacon delegate"];
         }
         else
         {

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E6E14F81AFDFCCB000F743C /* KRBeaconCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E14F11AFDFCCB000F743C /* KRBeaconCentral.m */; };
+		8E6E14F91AFDFCCB000F743C /* KRBeaconPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E14F31AFDFCCB000F743C /* KRBeaconPeripheral.m */; };
+		8E6E14FA1AFDFCCB000F743C /* KRBeaconFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E14F51AFDFCCB000F743C /* KRBeaconFinder.m */; };
+		8E6E14FB1AFDFCCB000F743C /* KRBeaconOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E6E14F71AFDFCCB000F743C /* KRBeaconOne.m */; };
 		8EA5B39518EACA9A0015B4F1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EA5B39418EACA9A0015B4F1 /* Foundation.framework */; };
 		8EA5B39718EACA9A0015B4F1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EA5B39618EACA9A0015B4F1 /* CoreGraphics.framework */; };
 		8EA5B39918EACA9A0015B4F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EA5B39818EACA9A0015B4F1 /* UIKit.framework */; };
@@ -21,12 +25,8 @@
 		8EA5B3B618EACA9A0015B4F1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EA5B39818EACA9A0015B4F1 /* UIKit.framework */; };
 		8EA5B3BE18EACA9A0015B4F1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8EA5B3BC18EACA9A0015B4F1 /* InfoPlist.strings */; };
 		8EA5B3C018EACA9A0015B4F1 /* BeaconFinderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA5B3BF18EACA9A0015B4F1 /* BeaconFinderTests.m */; };
-		8EA5B3D218EACAD90015B4F1 /* KRBeaconOne.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA5B3CE18EACAD90015B4F1 /* KRBeaconOne.m */; };
-		8EA5B3D918EAF66C0015B4F1 /* KRBeaconCentral.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA5B3D618EAF66C0015B4F1 /* KRBeaconCentral.m */; };
-		8EA5B3DA18EAF66C0015B4F1 /* KRBeaconPeripheral.m in Sources */ = {isa = PBXBuildFile; fileRef = 8EA5B3D818EAF66C0015B4F1 /* KRBeaconPeripheral.m */; };
 		8EA5B3DC18EB11EE0015B4F1 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EA5B3DB18EB11EE0015B4F1 /* CoreLocation.framework */; };
 		8EA5B3DE18EB11FA0015B4F1 /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EA5B3DD18EB11FA0015B4F1 /* CoreBluetooth.framework */; };
-		8ED9216F194B494A00E5F843 /* KRBeaconFinder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8ED9216E194B494A00E5F843 /* KRBeaconFinder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +40,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E6E14F01AFDFCCB000F743C /* KRBeaconCentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBeaconCentral.h; sourceTree = "<group>"; };
+		8E6E14F11AFDFCCB000F743C /* KRBeaconCentral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBeaconCentral.m; sourceTree = "<group>"; };
+		8E6E14F21AFDFCCB000F743C /* KRBeaconPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBeaconPeripheral.h; sourceTree = "<group>"; };
+		8E6E14F31AFDFCCB000F743C /* KRBeaconPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBeaconPeripheral.m; sourceTree = "<group>"; };
+		8E6E14F41AFDFCCB000F743C /* KRBeaconFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBeaconFinder.h; sourceTree = "<group>"; };
+		8E6E14F51AFDFCCB000F743C /* KRBeaconFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBeaconFinder.m; sourceTree = "<group>"; };
+		8E6E14F61AFDFCCB000F743C /* KRBeaconOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBeaconOne.h; sourceTree = "<group>"; };
+		8E6E14F71AFDFCCB000F743C /* KRBeaconOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBeaconOne.m; sourceTree = "<group>"; };
 		8EA5B39118EACA9A0015B4F1 /* BeaconFinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeaconFinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EA5B39418EACA9A0015B4F1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8EA5B39618EACA9A0015B4F1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -59,16 +67,8 @@
 		8EA5B3BB18EACA9A0015B4F1 /* BeaconFinderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BeaconFinderTests-Info.plist"; sourceTree = "<group>"; };
 		8EA5B3BD18EACA9A0015B4F1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8EA5B3BF18EACA9A0015B4F1 /* BeaconFinderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BeaconFinderTests.m; sourceTree = "<group>"; };
-		8EA5B3CD18EACAD90015B4F1 /* KRBeaconOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBeaconOne.h; sourceTree = "<group>"; };
-		8EA5B3CE18EACAD90015B4F1 /* KRBeaconOne.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBeaconOne.m; sourceTree = "<group>"; };
-		8EA5B3D518EAF66C0015B4F1 /* KRBeaconCentral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBeaconCentral.h; sourceTree = "<group>"; };
-		8EA5B3D618EAF66C0015B4F1 /* KRBeaconCentral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBeaconCentral.m; sourceTree = "<group>"; };
-		8EA5B3D718EAF66C0015B4F1 /* KRBeaconPeripheral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBeaconPeripheral.h; sourceTree = "<group>"; };
-		8EA5B3D818EAF66C0015B4F1 /* KRBeaconPeripheral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBeaconPeripheral.m; sourceTree = "<group>"; };
 		8EA5B3DB18EB11EE0015B4F1 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8EA5B3DD18EB11FA0015B4F1 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		8ED9216D194B494A00E5F843 /* KRBeaconFinder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KRBeaconFinder.h; sourceTree = "<group>"; };
-		8ED9216E194B494A00E5F843 /* KRBeaconFinder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KRBeaconFinder.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,10 +97,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8E6E14EE1AFDFCCB000F743C /* KRBeaconFinder */ = {
+			isa = PBXGroup;
+			children = (
+				8E6E14EF1AFDFCCB000F743C /* BLE */,
+				8E6E14F41AFDFCCB000F743C /* KRBeaconFinder.h */,
+				8E6E14F51AFDFCCB000F743C /* KRBeaconFinder.m */,
+				8E6E14F61AFDFCCB000F743C /* KRBeaconOne.h */,
+				8E6E14F71AFDFCCB000F743C /* KRBeaconOne.m */,
+			);
+			path = KRBeaconFinder;
+			sourceTree = "<group>";
+		};
+		8E6E14EF1AFDFCCB000F743C /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				8E6E14F01AFDFCCB000F743C /* KRBeaconCentral.h */,
+				8E6E14F11AFDFCCB000F743C /* KRBeaconCentral.m */,
+				8E6E14F21AFDFCCB000F743C /* KRBeaconPeripheral.h */,
+				8E6E14F31AFDFCCB000F743C /* KRBeaconPeripheral.m */,
+			);
+			path = BLE;
+			sourceTree = "<group>";
+		};
 		8EA5B38818EACA9A0015B4F1 = {
 			isa = PBXGroup;
 			children = (
-				8EA5B3C918EACAD90015B4F1 /* Classes */,
+				8E6E14EE1AFDFCCB000F743C /* KRBeaconFinder */,
 				8EA5B39A18EACA9A0015B4F1 /* BeaconFinder */,
 				8EA5B3B918EACA9A0015B4F1 /* BeaconFinderTests */,
 				8EA5B39318EACA9A0015B4F1 /* Frameworks */,
@@ -170,38 +193,6 @@
 				8EA5B3BC18EACA9A0015B4F1 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		8EA5B3C918EACAD90015B4F1 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				8EA5B3CA18EACAD90015B4F1 /* KRBeaconFinder */,
-			);
-			name = Classes;
-			path = BeaconFinder/Classes;
-			sourceTree = "<group>";
-		};
-		8EA5B3CA18EACAD90015B4F1 /* KRBeaconFinder */ = {
-			isa = PBXGroup;
-			children = (
-				8EA5B3D418EAF66C0015B4F1 /* BLE */,
-				8ED9216D194B494A00E5F843 /* KRBeaconFinder.h */,
-				8ED9216E194B494A00E5F843 /* KRBeaconFinder.m */,
-				8EA5B3CD18EACAD90015B4F1 /* KRBeaconOne.h */,
-				8EA5B3CE18EACAD90015B4F1 /* KRBeaconOne.m */,
-			);
-			path = KRBeaconFinder;
-			sourceTree = "<group>";
-		};
-		8EA5B3D418EAF66C0015B4F1 /* BLE */ = {
-			isa = PBXGroup;
-			children = (
-				8EA5B3D518EAF66C0015B4F1 /* KRBeaconCentral.h */,
-				8EA5B3D618EAF66C0015B4F1 /* KRBeaconCentral.m */,
-				8EA5B3D718EAF66C0015B4F1 /* KRBeaconPeripheral.h */,
-				8EA5B3D818EAF66C0015B4F1 /* KRBeaconPeripheral.m */,
-			);
-			path = BLE;
 			sourceTree = "<group>";
 		};
 		8EA5B3DF18EB11FF0015B4F1 /* Beacons */ = {
@@ -318,12 +309,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8EA5B3AB18EACA9A0015B4F1 /* ViewController.m in Sources */,
-				8EA5B3DA18EAF66C0015B4F1 /* KRBeaconPeripheral.m in Sources */,
 				8EA5B3A518EACA9A0015B4F1 /* AppDelegate.m in Sources */,
-				8EA5B3D918EAF66C0015B4F1 /* KRBeaconCentral.m in Sources */,
+				8E6E14FB1AFDFCCB000F743C /* KRBeaconOne.m in Sources */,
+				8E6E14FA1AFDFCCB000F743C /* KRBeaconFinder.m in Sources */,
+				8E6E14F81AFDFCCB000F743C /* KRBeaconCentral.m in Sources */,
+				8E6E14F91AFDFCCB000F743C /* KRBeaconPeripheral.m in Sources */,
 				8EA5B3A118EACA9A0015B4F1 /* main.m in Sources */,
-				8ED9216F194B494A00E5F843 /* KRBeaconFinder.m in Sources */,
-				8EA5B3D218EACAD90015B4F1 /* KRBeaconOne.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

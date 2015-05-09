@@ -3,7 +3,7 @@
 //  KRBeaconFinder V1.5
 //
 //  Created by Kalvar on 2013/07/01.
-//  Copyright (c) 2013 - 2014年 Kalvar. All rights reserved.
+//  Copyright (c) 2013 - 2015年 Kalvar. All rights reserved.
 //
 
 #import "KRBeaconOne.h"
