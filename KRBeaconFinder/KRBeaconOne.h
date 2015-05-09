@@ -1,6 +1,6 @@
 //
 //  KRBeaconFinder.h
-//  KRBeaconFinder V1.5
+//  KRBeaconFinder V1.5.1
 //
 //  Created by Kalvar on 2013/07/01.
 //  Copyright (c) 2013 - 2015年 Kalvar. All rights reserved.

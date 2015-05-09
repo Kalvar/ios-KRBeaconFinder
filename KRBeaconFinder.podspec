@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "KRBeaconFinder"
-  s.version      = "1.5"
+  s.version      = "1.5.1"
   s.summary      = "Find beacons, simulate beacons advertising and integrate BLE functions."
   s.description  = <<-DESC
                    KRBeaconFinder can lazy scanning beacons, relax using CoreLocation to monitor beacon-regions or use CoreBluetooth (BLE) to scan. And auto pop-up the message to notify users when they locked on the screen. It also can simulate beacon adversting from peripheral adversting.
