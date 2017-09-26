@@ -247,7 +247,7 @@
     if( _regions )
     {
         //如果不存在就執行 Double Check 進行刪除的動作
-        NSMutableArray *_tempRegions = [_regions copy];
+        NSMutableArray *_tempRegions = [[NSMutableArray alloc] initWithArray:_regions];
         for( CLBeaconRegion *_everyRegion in _tempRegions )
         {
             //如果 (NSNumber *) Major, Minor 是 nil, 則 integerValue 會是 0
