@@ -8,7 +8,7 @@ More Information see the souce code, any question you can email me or leave the 
 
 ```ruby
 platform :ios, '7.0'
-pod "KRBeaconFinder", "~> 1.5.2"
+pod "KRBeaconFinder", "~> 1.5.3"
 ```
 
 ## How To Get Started
@@ -258,7 +258,7 @@ pod "KRBeaconFinder", "~> 1.5.2"
 
 ## Version
 
-V1.5.2
+V1.5.3
 
 ## License
 
