@@ -248,6 +248,7 @@
     {
         //如果不存在就執行 Double Check 進行刪除的動作
         NSMutableArray *_tempRegions = [[NSMutableArray alloc] initWithArray:_regions];
+        NSUInteger index=0;
         for( CLBeaconRegion *_everyRegion in _tempRegions )
         {
             //如果 (NSNumber *) Major, Minor 是 nil, 則 integerValue 會是 0
@@ -256,11 +257,12 @@
                 _everyRegion.major.integerValue == _beaconMajor &&
                 _everyRegion.minor.integerValue == _beaconMinor )
             {
-                [_regions removeObject:_everyRegion];
+                [_regions removeObjectAtIndex:index];
                 [_locationManager stopRangingBeaconsInRegion:_everyRegion];
                 [_locationManager stopMonitoringForRegion:_everyRegion];
                 //break;
             }
+            index++;
         }
         [_tempRegions removeAllObjects];
         _tempRegions = nil;
